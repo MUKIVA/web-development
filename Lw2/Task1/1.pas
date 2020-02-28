@@ -1,0 +1,13 @@
+PROGRAM HelloWorld(INPUT, OUTPUT);
+USES
+   DOS;
+BEGIN {WorkWithQueryString}
+  WRITELN('Content-Type: Text/plain');
+  WRITELN;
+  WRITELN('REQUEST_METHOD: ', GetEnv('REQUEST_METHOD'));
+  WRITELN('HTTP_USER_AGENT: ', GetEnv('HTTP_USER_AGENT'));
+  WRITELN('HTTP_HOST: ', GetEnv('HTTP_HOST'));
+  WRITELN('CONTENT_LENGTH: ', GetEnv('CONTENT_LENGTH'));
+  WRITELN('QUERY_STRING: ', GetEnv('QUERY_STRING'))
+END. {WorkWithQueryString}
+
