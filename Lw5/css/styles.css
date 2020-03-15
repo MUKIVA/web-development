@@ -12,10 +12,21 @@ body
     padding: 100px 20px 0px 20px;
 }
 
-.side-left 
+.head-info
 {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    height: 350px;
+    margin-bottom: 61px
+}
+.side-left
+{
+    display: flex;
+    flex-direction: column;
     float: left;
     max-width: 330px;
+    height: 100%;
     margin: 0 60px 0 0;
 }
 
@@ -26,7 +37,9 @@ body
 
 .side-right
 {
-    margin: 50px 0 0 0;
+    display: flex;
+    flex-direction: column;
+    margin: -29px 0 0 0;
     float: right;
     width: 570px;
 }
@@ -36,28 +49,35 @@ body
     margin-bottom: 45px;
 }
 
+.side-right > p
+{
+    margin: 0 0 41px 0;
+}
+
 h2
 {
     color: #15a98c;
-    font: 24px/32px sans-serif, arial;
+    font: 24px/0px Open Sans, arial;
     font-weight: 600;
-    margin-bottom: -5px;    
+    margin: 0 0 10px 0;    
 }
 
 .side-right > h1
 {
-  font-size: 48px;
   color: #333333;
-  font-family: sans-serif;
+  font-family: Open Sans, arial;
+  font: 48px Open Sans, arial;
+  margin: 0 0 20px 0;
   font-weight: 700;
-  margin-bottom: 20px;
+  padding-left: 5px;
 }
 
 ul, ol
 {
     width: 330px;
-    margin-bottom: 40px;
-    padding: 0 0 0 22px;
+    float: left;
+    margin-bottom: 56px;
+    padding: 0 0 0 21px;
     color: #555555;
     font: 19px/36px georgia, arial;
 }
@@ -65,18 +85,18 @@ ul, ol
 .quotes
 {
     max-width: 500px;
-    font: 28px/42px georgia, arial;
+    font: 28px/43px georgia, arial;
     font-style: italic;
     color: #848484;
-    padding: 70px 0 0 55px;
-    position: relative;
+    padding: 70px 0 0 60px;
+    
 }
 
 .quotes-img
 {
     position: absolute;
     left: 0;
-    top: 0; 
+    top: 0;
 }
 
 .photo
@@ -85,20 +105,21 @@ ul, ol
     height: 350px;
     border-radius: 5px;
     background-color: #132d36;
+    float:  left;
+    margin-right: 60px;
 }
 
 .copiright
 {
     color: #333333;
-    padding: 0 0 0 55px;
-    font: 16px/42px sans-serif, arial;
+    padding: 0 0 0 63px;
+    font: 16px/42px Open Sans, arial;
     font-weight: 600;
 }
 
 p
 {
     margin: 0;
-    margin-bottom: 40px; 
     color: #555555;
     font: 19px/32px Georgia, arial;
 }
@@ -110,10 +131,21 @@ p
    border-radius: 3px;
    background-color: #45c3aa;       
 }
+span
+{
+    display: block;
+    width: 60px;
+    height: 6px;
+    border-radius: 3px;
+    background-color: #45c3aa;
+    margin-bottom: 45px
+}
 
 .quotes-div
 {
     height: 300px;
+    position: relative;
+    margin-top: 50px;
 }
 
 .side-right > .special-title
@@ -122,6 +154,8 @@ p
     line-height: 42px;
     color: #333333;
     font-weight: 400;
+    margin-left: -7px;
+    margin-bottom: 16sspx;
 }
 
 a
