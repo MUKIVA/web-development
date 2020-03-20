@@ -1,39 +1,39 @@
 <?php
-function passwordStrength(string $password):?int
+function passwordStrength():?int
 {
-	$strNew = $_GET["password"]; 
+	$password = $_GET["password"]; 
 	$safety = 0; // Надежность
 	$digit = 0;  // Кол-во цифр
-	$upperСase = 0;  // Верхний регистр 
-	$lowerСase = 0;  // Нижний регистр
+	$upper_Сase = 0;  // Верхний регистр 
+	$lower_Сase = 0;  // Нижний регистр
 	$list = '';
 	$i=0;
-	while ($i < strlen($strNew))
+	while ($i < strlen($password))
 	{
 		$safety = $safety + 4;
-		if (($strNew[$i] >= '0') and ($strNew[$i] <= '9'))
+		if (($password[$i] >= '0') and ($password[$i] <= '9'))
 		{
 			$safety = $safety + 4;
 			$digit++;
 		}			
-		if (($strNew[$i] >= 'A') and ($strNew[$i] <= 'Z'))
-			$upperСase++;
-		if (($strNew[$i] >= 'a') and ($strNew[$i] <= 'z'))
-			$lowerСase++;
-		if ((substr_count($strNew, $strNew[$i]) > 1) and (strpos($list, $strNew[$i]) === false))
-			$safety = $safety - (substr_count($strNew, $strNew[$i]));
-		$list = $list.$strNew[$i];
+		if (($password[$i] >= 'A') and ($password[$i] <= 'Z'))
+			$upper_Сase++;
+		if (($password[$i] >= 'a') and ($password[$i] <= 'z'))
+			$lower_Сase++;
+		if ((substr_count($password, $password[$i]) > 1) and (strpos($list, $password[$i]) === false))
+			$safety = $safety - (substr_count($password, $password[$i]));
+		$list = $list.$password[$i];
 		$i++;		
 	};
-	if ($upperСase > 0)
-		$safety = $safety + ((strlen($strNew) - $upperСase)*2);
-	if ($lowerСase > 0)
-		$safety = $safety + ((strlen($strNew) - $lowerСase)*2);
+	if ($upper_Сase > 0)
+		$safety = $safety + ((strlen($password) - $upper_Сase)*2);
+	if ($lower_Сase > 0)
+		$safety = $safety + ((strlen($password) - $lower_Сase)*2);
 	if ($digit === 0) 
-		$safety = $safety - strlen($strNew);
-	if (($upperСase === 0) and ($lowerСase === 0))
-		$safety = $safety - strlen($strNew);
+		$safety = $safety - strlen($password);
+	if (($upper_Сase === 0) and ($lower_Сase === 0))
+		$safety = $safety - strlen($password);
 	return ($safety);
-}
-echo passwordStrength('');
+};
+echo passwordStrength();
 ?>

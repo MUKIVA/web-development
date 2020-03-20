@@ -1,31 +1,31 @@
 <?php
-function checkIdentifier(string $identifier):?string
+function checkIdentifier()
 {
-	$strNew = $_GET["identifier"];
-	$checkInd = 'Yes';
+	$new_Str = $_GET["identifier"];
+	$check_Ind = 'Yes';
 	$i = 1;
-	if (($strNew[0] > '0') and ($strNew[0] < '9'))
+	if (($new_Str[0] > '0') and ($new_Str[0] < '9'))
 	{
-		echo ($strNew[0]." первый символ не может быть цифрой</br>");
-		$checkInd = 'No';		
+		echo ($new_Str[0]." первый символ не может быть цифрой</br>");
+		$check_Ind = 'No';		
 	};
-	while ($i < strlen($strNew))
+	while ($i < strlen($new_Str))
 	{
-		if ((($strNew[$i] < 'A') or ($strNew[$i] > 'Z')) and (($strNew[$i] < '0') or ($strNew[$i] > '9')) and (($strNew[$i] < 'a') or ($strNew[$i] > 'z')))
+		if ((($new_Str[$i] < 'A') or ($new_Str[$i] > 'Z')) and (($new_Str[$i] < '0') or ($new_Str[$i] > '9')) and (($new_Str[$i] < 'a') or ($new_Str[$i] > 'z')))
 		{
-			$checkInd = 'No';
-			echo ($strNew[$i]." не может быть символом идентификатора</br>");
+			$check_Ind = 'No';
+			echo ($new_Str[$i]." не может быть символом идентификатора</br>");
 		};
 		$i++;
 	};	
-	if ($checkInd === 'No')
+	if ($check_Ind === 'No')
 	{
-		$strNew = $strNew." не может быть идентификатором";
+		$new_Str = $new_Str." не может быть идентификатором";
 	} else {
 		echo "</br>";
-		$strNew = $strNew." - идентификатор";
+		$new_Str = $new_Str." - идентификатор";
 	};
-	return $strNew;
+	return $new_Str;
 };
-echo checkIdentifier('');
+echo checkIdentifier();
 ?>
