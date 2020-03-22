@@ -1,4 +1,4 @@
-PROGRAM WorkWithQueryString(INPUT, OUTPUT);
+﻿PROGRAM WorkWithQueryString(INPUT, OUTPUT);
 USES
   DOS;
 FUNCTION GetQueryStringParameter(Key: STRING): STRING;
@@ -10,13 +10,19 @@ BEGIN
   THEN
     BEGIN
       DELETE(Str, 1, POS(Key, Str)-1);
-      DELETE(Str, 1, POS('=', Str));
-      IF (POS('&', Str) <> 0)
+      IF COPY(Str, 1, POS('=', Str)-1) = Key
       THEN
-        GetQueryStringParameter := COPY(Str, 1, POS('&', Str)-1)
+        BEGIN
+          DELETE(Str, 1, POS('=', Str));
+          IF (POS('&', Str) <> 0)
+          THEN
+            GetQueryStringParameter := COPY(Str, 1, POS('&', Str)-1)
+          ELSE
+            GetQueryStringParameter := COPY(Str, 1, LENGTH(Str))
+        END
       ELSE
-        GetQueryStringParameter := COPY(Str, 1, LENGTH(Str));
-    END
+        GetQueryStringParameter := ''     
+    END    
   ELSE
     GetQueryStringParameter := ''     
 END;
