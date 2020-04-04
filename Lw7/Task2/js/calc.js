@@ -3,20 +3,26 @@ function cursorReplace(str, cursor) {
     cursor = str.indexOf(' ', cursor);
     return cursor;
   } else if (str[cursor] == '(') {
-    cursor = str.indexOf(')', cursor);
+    if (str.indexOf(') (') == -1){
+      cursor = str.indexOf(')');
+    } else {
+      cursor = str.lastIndexOf(') (');
+    }
     return cursor
   } else {
     return cursor;
   }
 }
 
+
 function fillFirst(str, cursor, firstNum) {
   if ((str[cursor] >= '0' && str[cursor] <= '9') || str[cursor] == '-') {
     firstNum = parseFloat(str.substring(cursor, str.indexOf(' ', cursor)));
   } else if (str[cursor] == '(') {
-  let  str1 = str.substring(cursor + 1, str.indexOf(')', cursor))
-    firstNum = calc(str.substring(cursor + 1, str.indexOf(')', cursor)));
-
+    while (str.indexOf(') (') != -1) {
+      str = str.substring(0, str.indexOf(') (')+1);
+    }
+    firstNum = calc(str.substring(cursor + 1, str.lastIndexOf(')')));
   }
   return firstNum;
 }
@@ -26,7 +32,10 @@ function fillSecond(str, cursor, secondNum) {
   if (((str[cursor] >= '0' && str[cursor] <= '9') || str[cursor] == '-') && secondNum == null) {
     secondNum = parseFloat(str.substring(cursor, str.indexOf(' ', cursor)));
   } else if (str[cursor] == '(') {
-    secondNum = calc(str.substring(cursor + 1, str.indexOf(')', cursor)));
+    while (str.indexOf(') (') != -1) {
+      str = str.substring(str.indexOf(') (') + 3, str.length - 2);
+    }
+    secondNum = calc(str.substring(cursor + 1, str.lastIndexOf(')')));
   }
   return secondNum;
 }
@@ -46,23 +55,23 @@ function calc(mathExp) {
         cursor = cursorReplace(mathExp, cursor);
       }
       if (secondNumber == null) {
-         secondNumber = fillSecond(mathExp, cursor, secondNumber);
-         cursor = cursorReplace(mathExp, cursor);
+        secondNumber = fillSecond(mathExp, cursor, secondNumber);
+        cursor = cursorReplace(mathExp, cursor);
       }
       cursor++;
     }
     if (firstNumber != null && secondNumber != null && operationSymbol != null) {
     if (operationSymbol == '+') {
-      console.log(`Результат: ${firstNumber + secondNumber}`)
+      console.log(`Результат ${mathExp}: ${firstNumber + secondNumber}`)
       return firstNumber + secondNumber;
     } else if (operationSymbol == '-'){
-      console.log(`Результат: ${firstNumber - secondNumber}`)
+      console.log(`Результат ${mathExp}: ${firstNumber - secondNumber}`)
       return firstNumber - secondNumber;
     } else if (operationSymbol == '*'){
-      console.log(`Результат: ${firstNumber * secondNumber}`)
+      console.log(`Результат ${mathExp}: ${firstNumber * secondNumber}`)
       return firstNumber * secondNumber;
     } else if (operationSymbol == '/')
-      console.log(`Результат: ${firstNumber / secondNumber}`)
+      console.log(`Результат ${mathExp}: ${firstNumber / secondNumber}`)
       return firstNumber / secondNumber;
     } else {
       console.log(`Некорректная строка`)
