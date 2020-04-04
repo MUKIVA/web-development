@@ -1,4 +1,4 @@
-function cursorReplace(str, cursor) {
+function cursorReplace(str, cursor) {  // Движение курсора к следующему значению
   if ((str[cursor] >= '0' && str[cursor] <= '9') || str[cursor] == '-') {
     cursor = str.indexOf(' ', cursor);
     return cursor;
@@ -15,7 +15,7 @@ function cursorReplace(str, cursor) {
 }
 
 
-function fillFirst(str, cursor, firstNum) {
+function fillFirst(str, cursor, firstNum) { // Выделение и расчёт первого числа
   if ((str[cursor] >= '0' && str[cursor] <= '9') || str[cursor] == '-') {
     firstNum = parseFloat(str.substring(cursor, str.indexOf(' ', cursor)));
   } else if (str[cursor] == '(') {
@@ -28,7 +28,7 @@ function fillFirst(str, cursor, firstNum) {
 }
 
 
-function fillSecond(str, cursor, secondNum) {
+function fillSecond(str, cursor, secondNum) { // Выделение и расчёт второго числа
   if (((str[cursor] >= '0' && str[cursor] <= '9') || str[cursor] == '-') && secondNum == null) {
     secondNum = parseFloat(str.substring(cursor, str.indexOf(' ', cursor)));
   } else if (str[cursor] == '(') {
@@ -40,7 +40,8 @@ function fillSecond(str, cursor, secondNum) {
   return secondNum;
 }
 
-function calc(mathExp) {
+
+function calc(mathExp) { // Вычисление целого выражения
   if (typeof mathExp == "string") {
     var operationSymbol = null;
     var firstNumber = null;
@@ -60,23 +61,25 @@ function calc(mathExp) {
       }
       cursor++;
     }
-    if (firstNumber != null && secondNumber != null && operationSymbol != null) {
-    if (operationSymbol == '+') {
-      console.log(`Результат ${mathExp}: ${firstNumber + secondNumber}`)
-      return firstNumber + secondNumber;
-    } else if (operationSymbol == '-'){
-      console.log(`Результат ${mathExp}: ${firstNumber - secondNumber}`)
-      return firstNumber - secondNumber;
-    } else if (operationSymbol == '*'){
-      console.log(`Результат ${mathExp}: ${firstNumber * secondNumber}`)
-      return firstNumber * secondNumber;
-    } else if (operationSymbol == '/')
-      console.log(`Результат ${mathExp}: ${firstNumber / secondNumber}`)
-      return firstNumber / secondNumber;
+    if (firstNumber != null && secondNumber != null && operationSymbol != null) { // Проверка на недостающие переменные
+      if (operationSymbol == '+') {
+        console.log(`Результат ${mathExp}: ${firstNumber + secondNumber}`)
+        return firstNumber + secondNumber;
+      } else if (operationSymbol == '-'){
+        console.log(`Результат ${mathExp}: ${firstNumber - secondNumber}`)
+        return firstNumber - secondNumber;
+      } else if (operationSymbol == '*'){
+        console.log(`Результат ${mathExp}: ${firstNumber * secondNumber}`)
+        return firstNumber * secondNumber;
+      } else if (operationSymbol == '/' && secondNumber != '0') {
+        console.log(`Результат ${mathExp}: ${firstNumber / secondNumber}`)
+        return firstNumber / secondNumber;
+      } else if (operationSymbol == '/' && secondNumber == '0') {  // Делить на наоль нельзя
+        console.log(`ОШИБКА: Делить на ноль нельзя.`)
+        return null;
+      }
     } else {
-      console.log(`Некорректная строка`)
-    }
-} else {
-  console.log('Это не строка')
-}
+    console.log(`ОШИБКА: Одна из переменных не была задана или не была вычислена.`) // Строка записана некорректно или присутствует деление на ноль.
+  }
+ }
 }
