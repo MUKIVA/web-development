@@ -4,11 +4,11 @@ function cursorReplace(str, cursor) {  // Движение курсора к с�
     return cursor;
   } else if (str[cursor] == '(') {
     if (str.indexOf(') (') == -1){
-      cursor = str.indexOf(')');
+      cursor = str.lastIndexOf(')');
     } else {
       cursor = str.lastIndexOf(') (');
     }
-    return cursor
+    return cursor;
   } else {
     return cursor;
   }
@@ -62,17 +62,17 @@ function calc(mathExp) { // Вычисление целого выражения
       cursor++;
     }
     if (firstNumber != null && secondNumber != null && operationSymbol != null) { // Проверка на недостающие переменные
-      if (operationSymbol == '+') {
-        console.log(`Результат ${mathExp}: ${firstNumber + secondNumber}`)
+      if (operationSymbol == '+') { // Выполнение операции
+        console.log(`Результат: ( ${mathExp}) = ${firstNumber + secondNumber}`)
         return firstNumber + secondNumber;
       } else if (operationSymbol == '-'){
-        console.log(`Результат ${mathExp}: ${firstNumber - secondNumber}`)
+        console.log(`Результат: ( ${mathExp}) = ${firstNumber - secondNumber}`)
         return firstNumber - secondNumber;
       } else if (operationSymbol == '*'){
-        console.log(`Результат ${mathExp}: ${firstNumber * secondNumber}`)
+        console.log(`Результат: ( ${mathExp}) = ${firstNumber * secondNumber}`)
         return firstNumber * secondNumber;
       } else if (operationSymbol == '/' && secondNumber != '0') {
-        console.log(`Результат ${mathExp}: ${firstNumber / secondNumber}`)
+        console.log(`Результат: ( ${mathExp}) = ${firstNumber / secondNumber}`)
         return firstNumber / secondNumber;
       } else if (operationSymbol == '/' && secondNumber == '0') {  // Делить на наоль нельзя
         console.log(`ОШИБКА: Делить на ноль нельзя.`)
