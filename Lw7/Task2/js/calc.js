@@ -32,9 +32,6 @@ function fillSecond(str, cursor, secondNum) { // Выделение и расч�
   if (((str[cursor] >= '0' && str[cursor] <= '9') || str[cursor] == '-') && secondNum == null) {
     secondNum = parseFloat(str.substring(cursor, str.indexOf(' ', cursor)));
   } else if (str[cursor] == '(') {
-    while (str.indexOf(') (') != -1) {
-      str = str.substring(str.indexOf(') (') + 3, str.length - 2);
-    }
     secondNum = calc(str.substring(cursor + 1, str.lastIndexOf(')')));
   }
   return secondNum;
