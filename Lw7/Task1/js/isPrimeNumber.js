@@ -12,7 +12,7 @@ function isPrimeNumber(n) {
 
 function primeNumberCheck(curNum) {
   let isPrime = true;
-  if ((typeof curNum == "number")) {
+  if (typeof curNum == "number") {
   for (let i = 2; i < curNum; i++) {
     if (curNum % i == 0) {
       isPrime = false;
