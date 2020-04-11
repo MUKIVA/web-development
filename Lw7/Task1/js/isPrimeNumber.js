@@ -6,12 +6,13 @@ function isPrimeNumber(n) {
   } else if (typeof n == "number") {
     primeNumberCheck(n);
   } else {
-    console.log(`${n} invalid parametr`)
+    console.log(`${n} invalid parameter`)
   }
 }
 
 function primeNumberCheck(curNum) {
   let isPrime = true;
+  if ((typeof curNum == "number")) {
   for (let i = 2; i < curNum; i++) {
     if (curNum % i == 0) {
       isPrime = false;
@@ -21,6 +22,9 @@ function primeNumberCheck(curNum) {
   if (isPrime) {
     console.log(`${curNum} is prime number`)
   } else {
-    console.log(`${curNum} in not prime number`)
+    console.log(`${curNum} is not prime number`)
   }
+  } else {
+    console.log(`${curNum} invalid parameter`)
+  } 
 }
