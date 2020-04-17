@@ -1,5 +1,5 @@
 function isPrimeNumber(n) {
-  if (Array.isArray(n)) {
+  if (Array.isArray(n) && n.length != 0) {
     for (let j = 0; j < n.length; j++) {
       primeNumberCheck(n[j]);
     }
@@ -12,7 +12,7 @@ function isPrimeNumber(n) {
 
 function primeNumberCheck(curNum) {
   let isPrime = true;
-  if ((typeof curNum == "number")) {
+  if (typeof curNum == "number") {
   for (let i = 2; i < curNum; i++) {
     if (curNum % i == 0) {
       isPrime = false;
@@ -26,5 +26,5 @@ function primeNumberCheck(curNum) {
   }
   } else {
     console.log(`${curNum} invalid parameter`)
-  } 
+  }
 }
