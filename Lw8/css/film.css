@@ -1,0 +1,63 @@
+.hidden_block
+{
+    display: none;
+    grid-row: 1
+}
+
+#right_event:hover, #left_event:hover
+{
+    background-color: #000;
+}
+
+#right_event
+{
+    width: 70px;
+    height: 70px;
+    background-color: #15a98c;
+    grid-column: 4/5;
+    grid-row: 4/5;
+    border-radius: 68px;
+    border: none;
+    color: #fff;
+    margin: 70px 0 0 110px;
+    font-size: 45px;
+}
+
+#left_event
+{
+    width: 70px;
+    height: 70px;
+    background-color: #15a98c;
+    grid-column: 1/2;
+    grid-row: 4/5;
+    margin: 68px 0 0 129px;
+    border-radius: 68px;
+    border: none;
+    color: #fff;
+    font-size: 45px;
+}
+
+#left_event:focus, #right_event:focus
+{
+    outline: none;
+}
+
+.film1
+{
+    grid-column: 1;
+}
+
+.film2
+{
+    grid-column: 2;
+}
+
+.film3
+{
+    grid-column: 3;
+}
+
+.film4
+{
+    grid-column: 4;
+}
