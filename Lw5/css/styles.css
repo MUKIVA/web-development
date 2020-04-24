@@ -65,23 +65,23 @@ body
 
 .side-right > h1
 {
-  color: #333333;
-  font-family: "Open Sans", arial;
-  font: 48px "Open Sans", arial;
-  margin: 0 0 20px 0;
-  font-weight: 700;
-  padding-left: 5px;
-  letter-spacing: 1.3px;
+    color: #333333;
+    font-family: "Open Sans", arial;
+    font: 48px "Open Sans", arial;
+    margin: 0 0 20px 0;
+    font-weight: 700;
+    padding-left: 5px;
+    letter-spacing: 1.3px;
 }
 
 .side-right > span
 {
-  font-size: 36px;
-  line-height: 42px;
-  color: #333333;
-  font-family: "Open Sans";
-  font-weight: 400;
-  margin: 0 0 15px 0;
+    font-size: 36px;
+    line-height: 42px;
+    color: #333333;
+    font-family: "Open Sans";
+    font-weight: 400;
+    margin: 0 0 15px 0;
 }
 
 ul, ol
