@@ -1,0 +1,371 @@
+body
+{
+    margin: 0 auto;
+    background-color: #fff;
+}
+
+header {
+    display: grid;
+    grid-template-columns: 140px 150px 230px;
+    height: 50px;
+    width: 1000px;
+    background-color: #fff;
+    grid-gap: 0;
+    margin: 0 auto;
+    justify-self: center;
+    padding: 0 0 0 55px;
+}
+
+button
+{
+    padding: 0;
+    min-width: 70px;
+    max-height: 70px;
+}
+
+.about_me
+{
+    float: left;
+    background: #fff;
+    border-style: none;
+    font-size: 19px;
+    line-height: 48px;
+    color: #333333;
+    font-family: "Georgia";
+}
+
+button:hover
+{
+    color: #f5f5f5;
+    background-color: #15a98c;
+}
+
+.my_hobby
+{
+    float: left;
+    line-height: 48px;
+    background: #fff;
+    border-style: none;
+    padding: 0 0 0 10px;
+    font-size: 19px;
+    line-height: 48px;
+    color: #333333;
+    font-family: "Georgia";
+}
+
+.loved_film
+{
+    float: left;
+    line-height: 50px;
+    background: #fff;
+    border-style: none;
+    font-size: 19px;
+    padding: 0 0 0 24px;
+    line-height: 48px;
+    color: #333333;
+    font-family: "Georgia";
+}
+.about_me:focus, .loved_film:focus, .my_hobby:focus, .film_button:focus
+{
+    outline: none;
+}
+
+.backgroundWallpaper
+{
+    margin: 0 auto;
+    height: 400px;
+    background: #8066dd;
+    filter: brightness(40%);
+    grid-row: 1/3;
+    grid-column: 1;
+    z-index: 1;
+}
+
+button > img
+{
+    margin-right: 10px;
+    margin-top: 15px;
+    filter: brightness(0%);
+}
+
+button:hover > img
+{
+    filter: brightness(100%);
+}
+
+.base
+{
+    display: grid;
+    grid-template-columns: 1fr 330px 2fr 1fr;
+    grid-template-rows: 350px 541px;
+    grid-auto-columns: minmax(100px, auto);
+    grid-auto-rows: minmax(10px, auto);
+    grid-gap: 42px 37px;
+    min-width: 1000px;
+    margin: 0 auto 71px auto;
+    grid-row: 2/4;
+    grid-column: 1;
+    z-index: 1;
+}
+
+.quot
+{
+    position: relative;
+}
+
+.quot > p:nth-child(1)
+{
+    filter: brightness(100%);
+    margin: 25px 0 0 4px;
+    width: 566px;
+    font: 28px/42px Georgia, arial;
+    color: #fff;
+    font-style: italic;
+}
+.quot > span
+{
+    display: block;
+    margin: 2px 0 0 6px;
+    font:16px/42px Open Sans, arial;
+    color: #f5f5f5;
+    font-weight: 600;
+    font-style: normal;
+    letter-spacing: 0.3px;
+}
+
+.photo_plus_quot
+{
+    display: grid;
+    margin: 0;
+    grid-template-columns: 330px 2fr;
+    grid-column-gap: 60px;
+    grid-column: 2/4;
+    grid-row: 1/2;
+}
+.user_photo > img
+{
+    filter: brightness(100%);
+    width: 330px;
+    height: 350px;
+    border-radius: 5px;
+    background-color: #132d36;
+}
+
+.text
+{
+    margin: 237px 0 0 23px;
+    grid-column: 3;
+    grid-row: 1/2;
+}
+
+.text > span
+{
+    display: block;
+    margin: 36px 0 15px 0;
+    font-size: 36px;
+    line-height: 42px;
+    color: #333333;
+    font-family: "Open Sans";
+    font-weight: 400;
+}
+
+.text > p
+{
+    width: 561px;
+    height: 198px;
+    margin: 0;
+    font-size: 19px;
+    line-height: 32px;
+    color: #555555;
+    font-family: "Georgia";
+}
+
+h1
+{
+    margin: 0;
+    font: 48px/42px Open Sans, arial;
+    color: #333333;
+    padding: 0 0 0 5px;
+    letter-spacing: 1.5px;
+    font-weight: 700;
+}
+ol, ul
+{
+    margin: 12px 0 41px 0;
+    padding-left: 21px;
+    font: 19px/36px Georgia, arial;
+    color: #555555;
+}
+.green_line
+{
+    width: 60px;
+    height: 6px;
+    margin: 30px 0 43px 0;
+    border-radius: 3px;
+    background-color: #45c3aa;
+}
+.sidebar > span
+{
+    font: 24px/32px Open Sans, arial ;
+    color: #15a98c;
+    font-weight: 600;
+    letter-spacing: 0.7px;
+}
+
+.sidebar
+{
+    grid-row: 2/3;
+    grid-column: 2/3;
+    margin: 4px 0 0 0;
+}
+
+.info
+{
+    display: grid;
+    grid-template-rows: 210px auto auto auto auto;
+    justify-items: center;
+    margin: 0;
+}
+
+a
+{
+    display: block;
+    margin: 2px 0 0 0;
+    color: #15a98b;
+    font: 19px/32px georgia, arial;
+}
+
+a > span
+{
+    display: inline-block;
+    text-decoration: none;
+    margin-top: 1px
+}
+
+.title_film
+{
+    padding: 35px 872px 0 0;
+    font-size: 36px;
+    line-height: 42px;
+    color: #333333;
+    font-family: "Open Sans";
+    width: 100%;
+    font-weight: 400;
+    text-align: center;
+    grid-column: 1;
+    grid-row: 3;
+    background: #f9f9f9;
+}
+
+.film
+{
+    display: grid;
+    grid-template-rows: 0 auto;
+    grid-template-columns: auto auto auto auto;
+    width: 100%;
+    grid-gap: 0;
+    grid-column: 2;
+    grid-row: 1;
+    grid-gap: 0 20px;
+    justify-content: center;
+}
+.film > div > img
+{
+    width: 285px;
+    height: 190px;
+    border-radius: 5px;
+    background-color: #464646;
+    grid-gap
+}
+
+.film > div > span
+{
+    color: #333333;
+    margin: 21px 0px 0 0px;
+    font: 22px/32px Open Sans, arial;
+    letter-spacing: 0.85px;
+    font-weight: 700;
+    display: block;
+}
+
+
+.film > div
+{
+    width: 285px;
+    height: 190px;
+    border-radius: 5px;
+    background-color: #464646;
+}
+
+.film > div > p
+{
+    width: 285px;
+    color: #555555;
+    font: 16px/28px Georgia, arial;
+}
+
+.film_button
+{
+    width: 220px;
+    height: 50px;
+    border-radius: 5px;
+    background-color: #15a98c;
+    border: none;
+    grid-row: 2;
+    grid-column: 2;
+    justify-self: center;
+    margin: 0 20px 71px 0;
+}
+
+.film_button:hover
+{
+    background-color: #098d71;
+}
+
+.film_button > p
+{
+    font: 19px/50% Georgia, arial;
+    color: #f5f5f5;
+    text-align: center;
+}
+
+.center
+{
+    display: grid;
+    justify-items: center;
+    margin: -190px 0 0 103px;
+}
+
+footer
+{
+    background: #fff;
+    filter: brightness(90%);
+    width: 100%;
+    height: 70px;
+    text-align: center;
+}
+
+footer > p
+{
+    display: inline-block;
+    font-size: 16px;
+    color: #555555;
+    font-family: "Georgia";
+    margin-right: 20px;
+    margin-top: 18px;
+    padding: 8px 0px 0 15px;
+}
+
+.carousel
+{
+    display: grid;
+    grid-template-columns: 1fr 1200px 1fr;
+    grid-template-rows: 820px auto;
+    margin: 0;
+    grid-gap: 0;
+    grid-column: 1;
+    grid-row: 4;
+    background: #f9f9f9;
+    width: 100%;
+    padding: 32px 0 0 0;
+}
