@@ -1,39 +1,52 @@
-* {margin: 0;}
-
-.filmbody
+body
 {
     margin: 0 auto;
     background-color: #fff;
 }
 
-header
-{
-    display: block;
-    position: sticky;
+header {
+    display: grid;
+    grid-template-columns: 140px 150px 230px;
     height: 50px;
-    width: 100%;
-    min-width: 1000px;
+    width: 1000px;
     background-color: #fff;
+    grid-gap: 0;
+    margin: 0 auto;
+    justify-self: center;
+    padding: 0 0 0 55px;
+}
+
+button
+{
+    padding: 0;
+    min-width: 70px;
+    max-height: 70px;
 }
 
 .about_me
 {
-    width: 140px;
-    background: #15a98c;
+    float: left;
+    background: #fff;
     border-style: none;
-    margin-left: 480px;
     font-size: 19px;
     line-height: 48px;
-    color: #f5f5f5;
+    color: #333333;
     font-family: "Georgia";
+}
+
+button:hover
+{
+    color: #f5f5f5;
+    background-color: #15a98c;
 }
 
 .my_hobby
 {
+    float: left;
     line-height: 48px;
     background: #fff;
     border-style: none;
-    margin-left: 10px;
+    padding: 0 0 0 10px;
     font-size: 19px;
     line-height: 48px;
     color: #333333;
@@ -42,16 +55,17 @@ header
 
 .loved_film
 {
+    float: left;
     line-height: 50px;
     background: #fff;
     border-style: none;
     font-size: 19px;
-    margin-left: 24px;
+    padding: 0 0 0 24px;
     line-height: 48px;
     color: #333333;
     font-family: "Georgia";
 }
-.about_me:focus, .loved_film:focus, .my_hobby:focus, .film_button:focus, .right_event:focus, .left_event:focus
+.about_me:focus, .loved_film:focus, .my_hobby:focus, .film_button:focus
 {
     outline: none;
 }
@@ -62,25 +76,36 @@ header
     height: 400px;
     background: #8066dd;
     filter: brightness(40%);
+    grid-row: 1/3;
+    grid-column: 1;
+    z-index: 1;
 }
 
 button > img
 {
     margin-right: 10px;
     margin-top: 15px;
+    filter: brightness(0%);
+}
+
+button:hover > img
+{
+    filter: brightness(100%);
 }
 
 .base
 {
     display: grid;
     grid-template-columns: 1fr 330px 2fr 1fr;
-    grid-template-rows: 350px 541px 30px 781px 50px;
+    grid-template-rows: 350px 541px;
     grid-auto-columns: minmax(100px, auto);
     grid-auto-rows: minmax(10px, auto);
-    grid-gap: 42px 50px;
+    grid-gap: 42px 37px;
     min-width: 1000px;
-    margin: 0 auto;
-    background-color: #fff;
+    margin: 0 auto 84px auto;
+    grid-row: 2/4;
+    grid-column: 1;
+    z-index: 1;
 }
 
 .quot
@@ -111,10 +136,11 @@ button > img
 .photo_plus_quot
 {
     display: grid;
-    margin: 0px 0 0 13px;
+    margin: 0;
     grid-template-columns: 330px 2fr;
     grid-column-gap: 60px;
     grid-column: 2/4;
+    grid-row: 1/2;
 }
 .user_photo > img
 {
@@ -127,9 +153,9 @@ button > img
 
 .text
 {
-    margin: -155px 0 0 23px;
-    grid-column: 3/4;
-    grid-row: 2/3
+    margin: 237px 0 0 23px;
+    grid-column: 3;
+    grid-row: 1/2;
 }
 
 .text > span
@@ -147,7 +173,7 @@ button > img
 {
     width: 561px;
     height: 198px;
-    margin: 0 0 0 0;
+    margin: 0;
     font-size: 19px;
     line-height: 32px;
     color: #555555;
@@ -190,16 +216,15 @@ ol, ul
 {
     grid-row: 2/3;
     grid-column: 2/3;
-    margin: 4px 0 0 14px;
+    margin: 4px 0 0 0;
 }
 
 .info
 {
     display: grid;
-    grid-template-rows: auto 84px;
+    grid-template-rows: 210px auto auto auto auto;
     justify-items: center;
-    margin: -190px 0 0 0;
-    grid-gap: 70px;
+    margin: 0;
 }
 
 a
@@ -219,27 +244,30 @@ a > span
 
 .title_film
 {
-    padding: 0 0 0 239px;
+    padding: 0 872px 0 0;
     font-size: 36px;
     line-height: 42px;
     color: #333333;
     font-family: "Open Sans";
+    width: 100%;
     font-weight: 400;
-    grid-column: 1/5;
-    grid-row: 3/4
+    text-align: center;
+    grid-column: 1;
+    grid-row: 3;
+    background: #fff;
 }
 
 .film
 {
     display: grid;
-    grid-template-columns: 190px 190px 190px 190px;
-    grid-template-rows: 0;
-    padding: 2px 0 0 240px;
-    height: 900px;
-    grid-column: 1/5;
-    grid-row: 4/5;
-    grid-gap: 0 115px;
-    visibility: visible;
+    grid-template-rows: 0 auto;
+    grid-template-columns: auto auto auto auto;
+    width: 100%;
+    grid-gap: 0;
+    grid-column: 2;
+    grid-row: 1;
+    grid-gap: 0 20px;
+    justify-content: center;
 }
 .film > div > img
 {
@@ -282,16 +310,16 @@ a > span
     height: 50px;
     border-radius: 5px;
     background-color: #15a98c;
-    grid-column: 2/4;
-    margin: 0 0 0 373px;
-    grid-row: 5/6;
     border: none;
+    grid-row: 2;
+    grid-column: 2;
+    justify-self: center;
+    margin: 0 20px 71px 0;
 }
-
 
 .film_button:hover
 {
-    background-color: #000;
+    background-color: #098d71;
 }
 
 .film_button > p
@@ -312,16 +340,32 @@ footer
 {
     background: #fff;
     filter: brightness(90%);
-    text-align: center;
     width: 100%;
+    height: 70px;
+    text-align: center;
 }
 
 footer > p
 {
+    display: inline-block;
     font-size: 16px;
     color: #555555;
     font-family: "Georgia";
     margin-right: 20px;
     margin-top: 18px;
     padding: 8px 0px 0 15px;
+}
+
+.carousel
+{
+    display: grid;
+    grid-template-columns: 1fr 2fr 1fr;
+    grid-template-rows: 820px auto;
+    margin: 0;
+    grid-gap: 0;
+    grid-column: 1;
+    grid-row: 4;
+    background: #fff;
+    width: 100%;
+    padding: 32px 0 0 0;
 }

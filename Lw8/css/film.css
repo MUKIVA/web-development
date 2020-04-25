@@ -1,36 +1,35 @@
 .hidden_block
 {
     display: none;
-    grid-row: 1
+    grid-row: 1;
 }
 
 #right_event:hover, #left_event:hover
 {
-    background-color: #000;
+    background-color: #098d71;
 }
 
 #right_event
 {
     width: 70px;
-    height: 70px;
     background-color: #15a98c;
-    grid-column: 4/5;
-    grid-row: 4/5;
+    grid-column: 3;
+    grid-row: 1;
     border-radius: 68px;
     border: none;
     color: #fff;
-    margin: 70px 0 0 110px;
+    margin: 65px 0 0 41px;
     font-size: 45px;
 }
 
 #left_event
 {
+    justify-self: end;
     width: 70px;
-    height: 70px;
     background-color: #15a98c;
-    grid-column: 1/2;
-    grid-row: 4/5;
-    margin: 68px 0 0 129px;
+    grid-column: 1;
+    grid-row: 1;
+    margin: 65px 41px 0 0;
     border-radius: 68px;
     border: none;
     color: #fff;
