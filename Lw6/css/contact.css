@@ -7,13 +7,13 @@
     margin: 70px 25px 90px 0px;
 }
 
-.writeModule
+.write_module
 {
     width: 740px;
     margin: 0px 0 0px 28px;
 }
 
-.writeModule > p
+form > p
 {
     font-size: 20px;
     line-height: 28px;

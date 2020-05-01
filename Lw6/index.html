@@ -11,12 +11,14 @@
   </head>
   <body>
     <header>
-      <button type="button" value="Обо мне" name="button" class="about_me"><img src="images/about_me_icon.png" alt="about_me_icon">Обо мне</button>
-      <button type="button" value="Обо мне" name="button" class="my_hobby"><img src="images/hobby_icon.png" alt="about_me_icon">Мое хобби</button>
-      <button type="button" value="Обо мне" name="button" class="loved_film"><img src="images/video_icon.png" alt="about_me_icon">Любимые фильмы</button>
+      <div class="header_button_block">
+        <button type="button" name="button" class="about_me"><img src="images/about_me_icon.png" alt="about_me_icon">Обо мне</button>
+        <button type="button" name="button" class="my_hobby"><img src="images/hobby_icon.png" alt="about_me_icon">Мое хобби</button>
+        <button type="button" name="button" class="loved_film"><img src="images/video_icon.png" alt="about_me_icon">Любимые фильмы</button>
+      </div>
     </header>
     <div class="info">
-      <div class="backgroundWallpaper">
+      <div class="background_wallpaper">
         <img src="images/background.png" alt="Wallpaper">
       </div>
       <div class="base">
@@ -26,7 +28,7 @@
           </div>
           <div class="quot">
             <p>
-              Мы берем на себя много, потому что мало чего боимся</br>
+              Мы берем на себя много, потому что мало чего боимся<br>
             </p>
             <span>— Том Демарко. Deadline</span>
           </div>
@@ -52,7 +54,7 @@
           <div class="green_line"></div>
           <p>
             В 1930-е годы прошлого века физик Джордж Гамоу
-            из университета штата Колорадо начал публиковать</br>
+            из университета штата Колорадо начал публиковать<br>
             мини-сериал рассказов о неком мистере Томпкинсе,
             банковском клерке средних лет. Мистер Томпкинс, как
             явствовало из этих историй, интересовался современной
@@ -71,16 +73,10 @@
       </div>
       <div class="carousel">
         <button type="button" name="right_event" id="right_event">
-          <div class="rightArrow">
-            <span class="upArrow"></span>
-            <span class="downArrow"></span>
-          </div>
+          <img class="nofilter_img" alt="right_arrow_img" src="images/right_arrow_button.png">
         </button>
         <button type="button" name="left_event" id="left_event">
-          <div class="leftArrow">
-            <span class="upArrow"></span>
-            <span class="downArrow"></span>
-          </div>
+          <img class="nofilter_img" alt="left_arrow_img" src="images/left_arrow_button.png">
         </button>
         <div class="film">
           <div class="film1">
@@ -155,27 +151,29 @@
             </P>
           </div>
         </div>
-        <button type="button" value="Обо мне" name="button" class="film_button"><p>Все фильмы</p></button>
+        <button type="button" name="button" class="film_button">Все фильмы</button>
       </div>
-      <div class="writeModule">
+      <div class="write_module">
         <div class="grey_line"></div>
         <h4>НАПИШИ МНЕ</h4>
         <div class="grey_line"></div>
-        <p>Ваше имя <span>*</span></p>
-        <input class="input_string" type="text" name="name" required />
-        <p>Ваш email <span>*</span></p>
-        <input class="input_string" type="email" name="email" required />
-        <p>Откуда вы?</p>
-        <select class="input_space" name="country">
-          <option value="Россия" selected>Россия</option>
-          <option value="Другое">Другое</option>
-        </select>
-        <p>Ваш пол</p>
-        <input class="radio_male" type="radio" name="gender" value="мужской" id="gender_male" checked /><label for="gender_male">Мужской</label>
-        <input class="radio_female" type="radio" name="gender" value="женский" id="gender_female" /><label for="gender_female">Женский</label>
-        <p>Ваше сообщение <span>*</span></p>
-        <textarea class="input_message" name="message" required></textarea>
-        <input class="send_button" type="submit" value="Отправить" />
+        <form action="#">
+          <p>Ваше имя <span>*</span></p>
+          <input class="input_string" type="text" name="name" required />
+          <p>Ваш email <span>*</span></p>
+          <input class="input_string" type="email" name="email" required />
+          <p>Откуда вы?</p>
+          <select class="input_space" name="country">
+            <option value="russia" selected>Россия</option>
+            <option value="other">Другое</option>
+          </select>
+          <p>Ваш пол</p>
+          <input class="radio_male" type="radio" name="gender" value="мужской" id="gender_male" checked /><label for="gender_male">Мужской</label>
+          <input class="radio_female" type="radio" name="gender" value="женский" id="gender_female" /><label for="gender_female">Женский</label>
+          <p>Ваше сообщение <span>*</span></p>
+          <textarea class="input_message" name="message" required></textarea>
+          <input class="send_button" type="submit" value="Отправить" />
+        </form>
       </div>
     </div>
     <footer>
