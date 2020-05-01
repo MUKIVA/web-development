@@ -6,23 +6,14 @@ body
 
 header {
     display: grid;
-    grid-template-columns: 1fr 960px 1fr;
+    grid-template-columns: 140px 150px 230px;
     height: 50px;
+    width: 1000px;
     background-color: #fff;
     grid-gap: 0;
-    position: sticky;
-    top: 0;
-    z-index: 100;
-    box-shadow: 0 0 0 rgba(0,0,0,0.25), 0 5px 10px rgba(0,0,0,0.22);
-}
-
-.header_button_block
-{
-    display: grid;
-    grid-template-columns: auto auto auto;
-    grid-template-rows: 50px;
-    grid-column: 2;
-    justify-self: start;
+    margin: 0 auto;
+    justify-self: center;
+    padding: 0 0 0 55px;
 }
 
 button
@@ -34,50 +25,52 @@ button
 
 .about_me
 {
+    float: left;
     background: #fff;
     border-style: none;
-    padding: 0 22px 0 22px;
     font-size: 19px;
     line-height: 48px;
     color: #333333;
-    font-family: "Georgia", "arial";
+    font-family: "Georgia";
 }
 
 button:hover
 {
     color: #f5f5f5;
     background-color: #15a98c;
-    cursor:pointer
 }
 
 .my_hobby
 {
+    float: left;
+    line-height: 48px;
     background: #fff;
     border-style: none;
-    padding: 0 20px 0 20px;
+    padding: 0 0 0 10px;
     font-size: 19px;
     line-height: 48px;
     color: #333333;
-    font-family: "Georgia", "arial";
+    font-family: "Georgia";
 }
 
 .loved_film
 {
     float: left;
+    line-height: 50px;
     background: #fff;
     border-style: none;
     font-size: 19px;
-    padding: 0 20px 0 20px;
+    padding: 0 0 0 24px;
     line-height: 48px;
     color: #333333;
-    font-family: "Georgia", "arial";
+    font-family: "Georgia";
 }
 .about_me:focus, .loved_film:focus, .my_hobby:focus, .film_button:focus
 {
     outline: none;
 }
 
-.background_wallpaper
+.backgroundWallpaper
 {
     margin: 0 auto;
     height: 400px;
@@ -90,14 +83,9 @@ button:hover
 
 button > img
 {
+    margin-right: 10px;
+    margin-top: 15px;
     filter: brightness(0%);
-    margin: 0 10px 0 0;
-}
-
-button > .nofilter_img
-{
-    filter: brightness(100%);
-    margin: 0 10px 0 0;
 }
 
 button:hover > img
@@ -114,7 +102,7 @@ button:hover > img
     grid-auto-rows: minmax(10px, auto);
     grid-gap: 42px 37px;
     min-width: 1000px;
-    margin: 0 auto 84px auto;
+    margin: 0 auto 71px auto;
     grid-row: 2/4;
     grid-column: 1;
     z-index: 1;
@@ -138,7 +126,7 @@ button:hover > img
 {
     display: block;
     margin: 2px 0 0 6px;
-    font:16px/42px "Open Sans", arial;
+    font:16px/42px Open Sans, arial;
     color: #f5f5f5;
     font-weight: 600;
     font-style: normal;
@@ -177,7 +165,7 @@ button:hover > img
     font-size: 36px;
     line-height: 42px;
     color: #333333;
-    font-family: "Open Sans", "arial";
+    font-family: "Open Sans";
     font-weight: 400;
 }
 
@@ -189,13 +177,13 @@ button:hover > img
     font-size: 19px;
     line-height: 32px;
     color: #555555;
-    font-family: "Georgia", "arial";
+    font-family: "Georgia";
 }
 
 h1
 {
     margin: 0;
-    font: 48px/42px "Open Sans", arial;
+    font: 48px/42px Open Sans, arial;
     color: #333333;
     padding: 0 0 0 5px;
     letter-spacing: 1.5px;
@@ -218,7 +206,7 @@ ol, ul
 }
 .sidebar > span
 {
-    font: 24px/32px "Open Sans", arial ;
+    font: 24px/32px Open Sans, arial ;
     color: #15a98c;
     font-weight: 600;
     letter-spacing: 0.7px;
@@ -256,24 +244,17 @@ a > span
 
 .title_film
 {
-    display: grid;
-    grid-template-columns: 1fr;
+    padding: 35px 872px 0 0;
     font-size: 36px;
     line-height: 42px;
     color: #333333;
-    font-family: "Open Sans", sans-serif;
+    font-family: "Open Sans";
+    width: 100%;
     font-weight: 400;
-    width: 1200px;
+    text-align: center;
     grid-column: 1;
     grid-row: 3;
-    background: #fff;
-    margin: 0 auto;
-}
-
-.title_film > span
-{
-    justify-self: start;
-    grid-column: 1;
+    background: #f9f9f9;
 }
 
 .film
@@ -282,6 +263,7 @@ a > span
     grid-template-rows: 0 auto;
     grid-template-columns: auto auto auto auto;
     width: 100%;
+    grid-gap: 0;
     grid-column: 2;
     grid-row: 1;
     grid-gap: 0 20px;
@@ -293,13 +275,14 @@ a > span
     height: 190px;
     border-radius: 5px;
     background-color: #464646;
+    grid-gap
 }
 
 .film > div > span
 {
     color: #333333;
-    margin: 21px 0 0 0;
-    font: 22px/32px "Open Sans", Sans-serif;
+    margin: 21px 0px 0 0px;
+    font: 22px/32px Open Sans, arial;
     letter-spacing: 0.85px;
     font-weight: 700;
     display: block;
@@ -332,14 +315,25 @@ a > span
     grid-column: 2;
     justify-self: center;
     margin: 0 20px 71px 0;
-    font: 19px/50% Georgia, arial;
-    color: #f5f5f5;
-    text-align: center;
 }
 
 .film_button:hover
 {
     background-color: #098d71;
+}
+
+.film_button > p
+{
+    font: 19px/50% Georgia, arial;
+    color: #f5f5f5;
+    text-align: center;
+}
+
+.center
+{
+    display: grid;
+    justify-items: center;
+    margin: -190px 0 0 103px;
 }
 
 footer
@@ -356,9 +350,10 @@ footer > p
     display: inline-block;
     font-size: 16px;
     color: #555555;
-    font-family: "Georgia", "Arial";
-    margin: 18px 20px 0 0;
-    padding: 8px 0 0 15px;
+    font-family: "Georgia";
+    margin-right: 20px;
+    margin-top: 18px;
+    padding: 8px 0px 0 15px;
 }
 
 .carousel
@@ -370,7 +365,7 @@ footer > p
     grid-gap: 0;
     grid-column: 1;
     grid-row: 4;
-    background: #fff;
+    background: #f9f9f9;
     width: 100%;
     padding: 32px 0 0 0;
 }

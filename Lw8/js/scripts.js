@@ -2,23 +2,24 @@ function run() {
     const divOfFilms = document.querySelector('.film');
     const elemOfDiv = divOfFilms.getElementsByTagName('div');
     const on_screen = 4;
-    const all_films = 10;
-    let condition = 0;
+    const all_films = elemOfDiv.length;
+    const initialCondition = 0;
+    let condition = initialCondition;
 
 
-    function offset(conditionValue, buttonDirection, filmLength){
-      if (condition == 6 && buttonDirection == "right") {
-        condition = condition - filmLength;
-      } else if (condition == -4 && buttonDirection == "left") {
-        condition = condition + filmLength;
+    function offset(conditionValue, buttonDirection){
+      if ((conditionValue == all_films - on_screen) && buttonDirection == "right") {
+        conditionValue = conditionValue - all_films;
+      } else if ((conditionValue == -on_screen) && buttonDirection == "left") {
+        conditionValue = conditionValue + all_films;
       }
-      return condition;
+      return conditionValue;
     }
 
 
     function right() {
-      condition = offset(condition, "right", elemOfDiv.length);
-      if (condition >= 0) {
+      condition = offset(condition, "right");
+      if (condition >= initialCondition) {
         elemOfDiv[condition].classList.remove('film1');
         elemOfDiv[condition].classList.add('hidden_block');
       } else {
@@ -26,7 +27,7 @@ function run() {
         elemOfDiv[condition + all_films].classList.add('hidden_block');
       }
       for (let i = 1; i <= on_screen; i++) {
-        if (i + condition >= 0) {
+        if (i + condition >= initialCondition) {
           elemOfDiv[i+condition].classList.remove('film'+(i+1));
           elemOfDiv[i+condition].classList.add('film'+i);
           elemOfDiv[i+condition].classList.remove('hidden_block');
@@ -37,16 +38,14 @@ function run() {
         }
       }
       condition++;
-      console.log(condition)
     };
-    console.log(elemOfDiv.length - condition);
 
     function left() {
-      condition = offset(condition, "left", elemOfDiv.length);
+      condition = offset(condition, "left");
       elemOfDiv[condition + on_screen - 1].classList.remove('film4');
       elemOfDiv[condition + on_screen - 1].classList.add('hidden_block');
       for (let i = 3; i >= 0; i--) {
-        if (i + condition > 0) {
+        if (i + condition > initialCondition) {
           elemOfDiv[i + condition - 1].classList.remove('film' + i);
           elemOfDiv[i + condition - 1].classList.add('film' + (i + 1));
           elemOfDiv[i + condition - 1].classList.remove('hidden_block');
@@ -57,7 +56,6 @@ function run() {
         }
       }
       condition--;
-      console.log(condition)
     }
 
     const rightArrow = document.getElementById('right_event');
