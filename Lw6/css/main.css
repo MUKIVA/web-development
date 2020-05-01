@@ -364,7 +364,7 @@ footer > p
 .carousel
 {
     display: grid;
-    grid-template-columns: 1fr 2fr 1fr;
+    grid-template-columns: 1fr 1200px 1fr;
     grid-template-rows: 820px auto;
     margin: 0;
     grid-gap: 0;
