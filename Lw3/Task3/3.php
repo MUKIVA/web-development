@@ -1,39 +1,118 @@
 <?php
-function passwordStrength():?int
-{
-	$password = $_GET["password"]; 
-	$safety = 0; // Надежность
-	$digit = 0;  // Кол-во цифр
-	$upper_Сase = 0;  // Верхний регистр 
-	$lower_Сase = 0;  // Нижний регистр
-	$list = '';
-	$i=0;
-	while ($i < strlen($password))
-	{
-		$safety = $safety + 4;
-		if (($password[$i] >= '0') and ($password[$i] <= '9'))
-		{
-			$safety = $safety + 4;
-			$digit++;
-		}			
-		if (($password[$i] >= 'A') and ($password[$i] <= 'Z'))
-			$upper_Сase++;
-		if (($password[$i] >= 'a') and ($password[$i] <= 'z'))
-			$lower_Сase++;
-		if ((substr_count($password, $password[$i]) > 1) and (strpos($list, $password[$i]) === false))
-			$safety = $safety - (substr_count($password, $password[$i]));
-		$list = $list.$password[$i];
-		$i++;		
-	};
-	if ($upper_Сase > 0)
-		$safety = $safety + ((strlen($password) - $upper_Сase)*2);
-	if ($lower_Сase > 0)
-		$safety = $safety + ((strlen($password) - $lower_Сase)*2);
-	if ($digit === 0) 
-		$safety = $safety - strlen($password);
-	if (($upper_Сase === 0) and ($lower_Сase === 0))
-		$safety = $safety - strlen($password);
-	return ($safety);
-};
 echo passwordStrength();
+
+function allUpperCaseLetterSafety($CheckString)
+{
+    $upperCaseSafety = 0;
+    $index = 0;
+    $strLength = strlen($CheckString);
+    while ($index <= $strLength)
+    {
+        if (($CheckString[$index] >= 'A') and ($CheckString[$index] <= 'Z'))
+        {
+            $upperCaseSafety++;
+        }
+        $index++;
+    }
+    if ($upperCaseSafety !== 0)
+    {
+        $upperCaseSafety = ($strLength - $upperCaseSafety) * 2;
+    }
+    return $upperCaseSafety;
+}
+
+function allLowerCaseLetterSafety($CheckString)
+{
+    $lowerCaseSafety = 0;
+    $index = 0;
+    $strLength = strlen($CheckString);
+    while ($index <= $strLength)
+    {
+        if (($CheckString[$index] >= 'a') and ($CheckString[$index] <= 'z'))
+        {
+            $lowerCaseSafety++;
+        }
+        $index++;
+    }
+    if ($lowerCaseSafety !== 0)
+    {
+        $lowerCaseSafety = ($strLength - $lowerCaseSafety) * 2;
+    }
+    return $lowerCaseSafety;
+}
+
+function allDigitSafety($CheckString)
+{
+    $digitSafety = 0;
+    $checkDigitString = '1234567890';
+    for ($digit = 0; $digit <= 9; $digit++)
+    {
+        $digitSafety = $digitSafety + (4 * substr_count($CheckString, $checkDigitString[$digit]));
+    }
+    return $digitSafety;
+}
+
+function allCharSafety($CheckString)
+{
+    return (4 * strlen($CheckString));
+}
+
+function onliLetterFine($CheckString)
+{
+    if (allDigitSafety($CheckString) === 0)
+    {
+        return strlen($CheckString);
+    }
+    else
+    {
+        return 0;
+    }
+}
+
+function onliDigitFine($CheckString)
+{
+    if ((allUpperCaseLetterSafety($CheckString) === 0) and (allLowerCaseLetterSafety($CheckString) === 0))
+    {
+        return strlen($CheckString);
+    }
+    else
+    {
+        return 0;
+    }
+}
+
+function repeatCharactersFine($CheckString)
+{
+    $fine = 0; 
+    $validCharString = '123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    for ($validCharIndex = 0; $validCharIndex < strlen($validCharString); $validCharIndex++)
+    {
+        if (substr_count($CheckString, $validCharString[$validCharIndex]) > 1)
+        {
+            $fine = $fine + substr_count($CheckString, $validCharString[$validCharIndex]);
+        }
+    }
+    return $fine;
+}
+
+function passwordStrength()
+{
+    $safety = 0;
+    $parametrString = $_GET["password"];
+    if (empty($parametrString))
+    {
+        return 'Error: Параметр password не задан';
+    }
+    else
+    {
+         $safety = $safety + allCharSafety($parametrString);
+         $safety = $safety + allDigitSafety($parametrString);
+         $safety = $safety + allUpperCaseLetterSafety($parametrString);
+         $safety = $safety + allLowerCaseLetterSafety($parametrString);
+         $safety = $safety - onliLetterFine($parametrString);
+         $safety = $safety - onliDigitFine($parametrString);
+         $safety = $safety - repeatCharactersFine($parametrString);
+    }
+    return $safety;
+}
 ?>
