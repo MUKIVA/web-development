@@ -11,8 +11,8 @@ BEGIN {DearName}
   THEN                 
     DELETE(Name, 1, POS('=', Name))
   ELSE
-    Name := ' ';
-  IF Name = ' '
+    Name := '';
+  IF Name = ''
   THEN
     WRITELN('Hello Anonymous')
   ELSE

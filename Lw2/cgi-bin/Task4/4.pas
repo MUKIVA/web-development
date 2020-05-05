@@ -1,11 +1,21 @@
-﻿PROGRAM WorkWithQueryString(INPUT, OUTPUT);
+PROGRAM WorkWithQueryString(INPUT, OUTPUT);
 USES
-  DOS;
+  DOS;  
+FUNCTION CleanSpace(Str: STRING): STRING;
+VAR
+  Index: INTEGER;
+BEGIN
+  WHILE POS('%20', Str) > 0
+  DO
+    DELETE(Str, POS('%20', Str), 3);
+  CleanSpace := Str
+END;
 FUNCTION GetQueryStringParameter(Key: STRING): STRING;
 VAR
   Str: STRING;
 BEGIN
   Str := GetEnv('QUERY_STRING');
+  Str := CleanSpace(Str);
   IF (Str[POS(Key, Str)-1] = '&') OR (POS(Key, Str) = 1)
   THEN
     BEGIN
