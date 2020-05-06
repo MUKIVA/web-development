@@ -1,28 +1,75 @@
 <?php
+function dirCheck()
+{
+    if (file_exists("./Data/"))
+    {
+        return null;
+    }
+    else
+    {
+      return mkdir("./Data/");
+    }
+}
+
+function writeErrorLog($errorString)
+{
+    $f = fopen("Data/errorlog.txt", "a");
+    fwrite($f, "$errorString \n");
+    fclose($f);
+}
+
+function writeParametr($parString, $email)
+{
+    $parametr = $_GET["$parString"];
+    if (empty($parametr))
+    {
+        writeErrorLog("Warning: Отстутствует параметр $parString");
+    }
+    else
+    {
+        $f = fopen("Data/$email.txt", "a");
+        fwrite($f, "$parString: $parametr\n");
+        fclose($f);
+    }
+}
+
+function emailCheck($email)
+{
+    if ((strpos($email, '@') > 1) and ((strpos($email, '@gmail.com') != false) or (strpos($email, '@mail.ru') != false) or (strpos($email, '@yandex.ru') != false) or (strpos($email, '@volgatech.net') != false)))
+    {
+        $f = fopen("Data/$email.txt", "w");
+        fwrite($f, '');
+        fclose($f);
+        return true;
+    }
+    else
+    {
+        return false;
+    }
+}
 function surveySaver()
 {
-	$first_name = $_GET["first_name"]; 
-    $last_name = $_GET["last_name"];
-	$email = $_GET["email"];
-	$age = $_GET["age"];
-	$first_name = ((($first_name === null) or ($first_name === '')) ? ' ' : $first_name);
-	$last_name = ((($last_name === null) or ($last_name === '')) ? ' ' : $last_name);
-	$age = ((($age === null) or ($age === ''))? ' ' : $age);
-	if (($email !== null) and ($email !== ''))
-	{
-		$f = fopen("Data/$email.txt", "w");
-		$str = ((($first_name !== null) and ($first_name !== ' ')) ? "$str"."First_name: $first_name\r" : $str);
-		$str = ((($last_name !== null) and ($last_name !== ' ')) ? "$str"."Last_name: $last_name\r" : $str);
-		$str = ((($age !== null) and ($age !== ' ')) ? "$str"."Age: $age\r" : $str);
-		$str = ((($email !== null) and ($email !== ' ')) ? "$str"."Email: $email\r" : $str);
-		fwrite($f, $str);	
-		fclose($f);	
-	} else {
-		$f = fopen("Data/$email.txt", "w");
-	    fwrite($f, "Email не указан");
-		fclose($f);
-	};
-	return ($first_name);
-};
-surveySaver();
+    dirCheck();
+    $emailString = $_GET["email"];
+    if (empty($emailString))
+    {
+        writeErrorLog('Error: Параметр email обязателен');
+    }
+    else
+    {   
+        if (emailCheck($emailString))
+        {
+            writeParametr("email", $emailString);
+            writeParametr("first_name", $emailString);
+            writeParametr("last_name", $emailString);
+            writeParametr("age", $emailString);
+        }
+        else
+        {
+            writeErrorLog('Error: Некорректный email');
+        }
+
+    }
+}
+echo surveySaver();
 ?>
