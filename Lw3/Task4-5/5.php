@@ -4,7 +4,7 @@ function emailCheck($email)
 {   
     if (file_exists("./data/$email.txt"))
     {
-        return (strpos($email, '@') > 1);
+        return (strpos($email, '@') > 0);
     }
     else
     {
@@ -24,7 +24,7 @@ function getParamValue($findPar, $parStr)
 {
     if (strripos($parStr, $findPar) === false)
     {
-        return ' ';
+        return " \n";
     }
     else
     {

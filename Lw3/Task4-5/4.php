@@ -35,7 +35,7 @@ function writeParametr($parString, $email)
 
 function emailCheck($email)
 {
-    if ((strpos($email, '@') > 1) and ((strpos($email, '@gmail.com') != false) or (strpos($email, '@mail.ru') != false) or (strpos($email, '@yandex.ru') != false) or (strpos($email, '@volgatech.net') != false)))
+    if ((strpos($email, '@') > 0) and ((strpos($email, '@gmail.com') != false) or (strpos($email, '@mail.ru') != false) or (strpos($email, '@yandex.ru') != false) or (strpos($email, '@volgatech.net') != false)))
     {
         $f = fopen("Data/$email.txt", "w");
         fwrite($f, '');
