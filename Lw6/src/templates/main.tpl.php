@@ -18,9 +18,7 @@
       </div>
     </header>
     <div class="info">
-      <div class="background_wallpaper">
-        <img src="images/background.png" alt="Wallpaper">
-      </div>
+      <div class="background_wallpaper"></div>
       <div class="base">
         <div class="photo_plus_quot">
           <div class="user_photo">
@@ -153,28 +151,7 @@
         </div>
         <button type="button" name="button" class="film_button">Все фильмы</button>
       </div>
-      <div class="write_module">
-        <div class="grey_line"></div>
-        <h4>НАПИШИ МНЕ</h4>
-        <div class="grey_line"></div>
-        <form action="#">
-          <p>Ваше имя <span>*</span></p>
-          <input class="input_string" type="text" name="name" required>
-          <p>Ваш email <span>*</span></p>
-          <input class="input_string" type="email" name="email" required>
-          <p>Откуда вы?</p>
-          <select class="input_space" name="country">
-            <option value="russia" selected>Россия</option>
-            <option value="other">Другое</option>
-          </select>
-          <p>Ваш пол</p>
-          <input class="radio_male" type="radio" name="gender" value="male" id="gender_male" checked><label for="gender_male">Мужской</label>
-          <input class="radio_female" type="radio" name="gender" value="female" id="gender_female"><label for="gender_female">Женский</label>
-          <p>Ваше сообщение <span>*</span></p>
-          <textarea class="input_message" name="message" required></textarea>
-          <input class="send_button" type="submit" value="Отправить">
-        </form>
-      </div>
+      <?php include __DIR__ . '/form.tpl.php' ?>
     </div>
     <footer>
       <p>
