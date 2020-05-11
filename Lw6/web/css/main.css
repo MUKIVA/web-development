@@ -314,6 +314,7 @@ a > span
     height: 190px;
     border-radius: 5px;
     background-color: #464646;
+    transition: all ease 1s;
 }
 
 .film > div > p

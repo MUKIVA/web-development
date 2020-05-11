@@ -168,14 +168,16 @@ label
       font-size: 20px;
       line-height: 28px;
       font-family: "Open Sans", sans-serif;
-      font-weight: 400;
+      font-weight: 900;
+      margin: 0 0 0 30px;
 }
 
 .completed_msg
 {
       color: #15a98c;
       font-size: 20px;
+      margin: 0 0 0 30px;
       line-height: 28px;
       font-family: "Open Sans", sans-serif;
-      font-weight: 400;
+      font-weight: 900;
 }

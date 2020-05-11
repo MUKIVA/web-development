@@ -6,21 +6,20 @@ function validFormParam(): void
     $country = getPostParameter('country') === '-' ? '' : getPostParameter('country');
     $gender = getPostParameter('gender') === 'male' ? 'женский' : getPostParameter('gender') === 'female' ? 'мужской' : '';
     $message = getPostParameter('message');
-    $completed = true;
     $dataForm = [
         'name' => $name,
         'email' => $email,
         'country' => $country,
         'gender' => $gender,
         'message' => $message,
-        'сompleted' => $completed,
+        'сompleted' => 1,
         'name_error' => ($name === '') ? 'Некорректное имя' : '',
         'email_error' => ($email === '') ? 'Некорректный email' : '',
         'message_error' => ($message === '') ? 'необходимо ввести сообщение' : '',
     ];
-    if ($name === '' or $email === '' or $message === '')
+    if ($name === '' || $email === '' || $message === '')
     {
-        $dataForm['сompleted'] = false;
+        $dataForm['сompleted'] = 0;
     }
     else
     {

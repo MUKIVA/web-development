@@ -46,5 +46,13 @@
     </p>
     <textarea class="input_message" name="message" ><?php echo $args['message'] ?? ''; ?></textarea>
     <input class="send_button" type="submit" value="Отправить">
+    <?php if (isset($args['сompleted']) == "true"):
+      if ($args['сompleted']):
+         echo "<span class=\"completed_msg\">Успех</span>";
+       endif;
+       if (!($args['сompleted'])):
+         echo "<span class=\"non_completed_msg\">Провал</span>";
+       endif;
+     endif; ?>
   </form>
 </div>
