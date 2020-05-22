@@ -46,7 +46,7 @@
     </p>
     <textarea class="input_message" name="message" ><?php echo $args['message'] ?? ''; ?></textarea>
     <input id="send_button" type="submit" value="Отправить">
-    <sapn class="send_message"><img src="images/success_send.png" alt="success_send_image">
+    <span class="send_message"><img src="images/success_send.png" alt="success_send_image">
                Ваше сообщение успешно отправлено
     </span>
     <?php if (isset($args['сompleted'])):
