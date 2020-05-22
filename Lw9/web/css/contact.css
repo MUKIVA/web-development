@@ -200,3 +200,8 @@ label
     margin: 0 14px 0 27px;
     float: left;
 }
+
+.error
+{
+    border-color: #EE5252;
+}

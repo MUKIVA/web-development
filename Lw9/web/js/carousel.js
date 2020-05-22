@@ -64,5 +64,4 @@ function run() {
     leftArrow.addEventListener('click', left);
 }
 
-
-window.onload = run;
+window = addEventListener('load', run);
