@@ -13,7 +13,6 @@ function run() {
     }
 
     function checkInfo(userData) {
-        console.log(userData);
         if (userData['email'] === 'error' || userData['message'] === 'error' || userData['name'] === 'error') {
             userData['name'] === 'error' ? name.classList.add('error') : name.classList.remove('error');
             userData['email'] === 'error' ? email.classList.add('error') : email.classList.remove('error');
@@ -24,7 +23,7 @@ function run() {
             name.classList.remove('error');
             email.classList.remove('error');
             message.classList.remove('error');
-            successMessage.classList.remove('error');
+            successMessage.style.visibility = "visible"
 
         }
     }
