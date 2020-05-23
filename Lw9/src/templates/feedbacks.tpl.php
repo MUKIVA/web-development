@@ -12,7 +12,7 @@
       <form action="feedbacks.php" method="POST"> 
         <p>Введите email</p>
         <input type="email" name="email" class="input_string" value="<?php echo $args['email'] ?? ''; ?>" require >
-        <input type="submit" value="Отправить" class="send_button" >
+        <input type="submit" value="Отправить" id="send_button" >
       </form>
     </div>
     <?php

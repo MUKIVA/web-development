@@ -1,9 +1,7 @@
 function run() {
 
     async function ajax(formData) {
-      const errorColor = "#EE5252";
         const url = "/web/php/formData.php";
-        let userData = {};
         await fetch( url, {
                 method: 'POST',
                 body: formData
