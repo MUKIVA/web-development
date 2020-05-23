@@ -1,4 +1,4 @@
-function run() {
+function carousel() {
     const divOfFilms = document.querySelector('.film');
     const elemOfDiv = divOfFilms.getElementsByTagName('div');
     const on_screen = 4;
@@ -64,4 +64,4 @@ function run() {
     leftArrow.addEventListener('click', left);
 }
 
-window = addEventListener('load', run);
+window = addEventListener('load', carousel);

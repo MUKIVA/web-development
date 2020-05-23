@@ -1,4 +1,4 @@
-function run() {
+function form() {
 
     async function ajax(formData) {
         const url = "/web/php/formData.php";
@@ -53,4 +53,4 @@ function run() {
 }
 
 
-window = addEventListener('load', run);
+window = addEventListener('load', form);
