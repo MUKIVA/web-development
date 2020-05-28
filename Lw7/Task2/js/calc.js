@@ -1,138 +1,104 @@
-var error = false;
+function calc(str) {
 
-function isNumber(char) {
-  return ((char >= '0' && char <= '9') || char == '-')
-}
+  let isNumber = (n) => (typeof (n) == "number");
+  let isOperation = (char) => (char == '+' || char == '-' || char == '*' || char == '/'); 
+  let isDigit = (char) => (char >= '0' && char <= '9');
 
-
-function checkBrackets(str) {
-  if ((str.split('(').length - 1) != (str.split(')').length - 1) && (error == false)) {
-    console.log('ОШИБКА: Не корректная строка')
-    return true;
-  }
-  if (error == false){
-    return false;
-  } else {
-    return true;
-  }
-}
-
-
-function checkStr(str) {
-  let pos = 0;
-  let validValues = '123456789-+*/ ()';
-  while (pos < str.length - 1) {
-    if ((validValues.indexOf(str[pos]) == -1) && (error == false)) {
-      console.log('ОШИБКА: В строке присутствует недопустимый символ.')
-      return true;
-    }
-    pos++;
-  }
-  return false;
-}
-
-
-function cursorReplace(str, cursor) {  // Движение курсора к следующему значению
-  if ((str[cursor] >= '0' && str[cursor] <= '9') || str[cursor] == '-') {
-    cursor = str.indexOf(' ', cursor);
-    return cursor;
-  } else if (str[cursor] == '(') {
-    if (str.indexOf(') (') == -1){
-      cursor = str.lastIndexOf(')');
-    } else {
-      cursor = str.lastIndexOf(') (');
-    }
-    return cursor;
-  } else {
-    return cursor;
-  }
-}
-
-
-function fillFirst(str, cursor, firstNum) { // Выделение и расчёт первого числа
-  if (isNumber(str[cursor])) {
-    firstNum = parseFloat(str.substring(cursor, str.indexOf(' ', cursor)));
-  } else if (str[cursor] == '(') {
-    if (str.indexOf(') (') != -1) {
-      str = str.substring(0, str.indexOf(') (')+1);
-    }
-    firstNum = calc(str.substring(cursor + 1, str.lastIndexOf(')')));
-  }
-  if (isNaN(firstNum)) {
-    console.log(`ОШИБКА: Одна из переменных не была задана или не была вычислена.`);
-    error = true;
-    return null;
-  } else {
-    return firstNum;
-  }
-}
-
-
-function fillSecond(str, cursor, secondNum) { // Выделение и расчёт второго числа
-  if ((isNumber(str[cursor])) && secondNum == null)  {
-    secondNum = parseFloat(str.substring(cursor, str.indexOf(' ', cursor)));
-  } else if (str[cursor] == '(') {
-    secondNum = calc(str.substring(cursor + 1, str.lastIndexOf(')')));
-  }
-  if (isNaN(secondNum)) {
-    console.log(`ОШИБКА: Одна из переменных не была задана или не была вычислена.`);
-    error = true;
-    return null;
-  } else {
-    return secondNum;
-  }
-}
-
-
-function calc(mathExp) { // Вычисление целого выражения
-  error = false;
-  if ((typeof mathExp == "string") && (error == false)) {
-    var operationSymbol = null;
-    var firstNumber = null;
-    var secondNumber = null;
-    mathExp = mathExp.replace(/\s+/g, ' ').trim();
-    mathExp += ' ';
-    error = checkStr(mathExp);
-    error = checkBrackets(mathExp);
-    var cursor = 2;
-    if (mathExp[0] == '+' || mathExp[0] == '-' || mathExp[0] == '*' || mathExp[0] == '/') operationSymbol = mathExp[0];
-    while (cursor < mathExp.length) {
-      if (firstNumber == null && error == false) {
-        firstNumber = fillFirst(mathExp, cursor, firstNumber);
-        cursor = cursorReplace(mathExp, cursor);
+  function fillTurn(str) {
+    let pos = 0;
+    let turn = [];
+    while (pos < str.length - 1) {
+      if (isOperation(str[pos]) && !isDigit(str[pos + 1])) {
+        turn.push(str[pos])
+      } else if (isOperation(str[pos]) && isDigit(str[pos + 1]) && (str[pos] == '+' || str[pos] == '-')) {
+        turn.push(parseFloat(str.substring(pos, str.indexOf(' ', pos))));
+        pos = str.indexOf(' ', pos);
+      } else if (isOperation(str[pos]) && isDigit(str[pos + 1]) && (str[pos] == '*' || str[pos] == '/')) {
+        turn.push(str[pos]);
+      } else if (isDigit(str[pos])) {
+        turn.push(parseFloat(str.substring(pos, str.indexOf(' ', pos))));
+        pos = str.indexOf(' ', pos);
       }
-      if (secondNumber == null && error == false) {
-        secondNumber = fillSecond(mathExp, cursor, secondNumber);
-        cursor = cursorReplace(mathExp, cursor);
-      }
-      cursor++;
+      pos++;
     }
-    if ((firstNumber != null && secondNumber != null && operationSymbol != null) && (error != true)) { // Проверка на недостающие переменные
-      if (operationSymbol == '+') { // Выполнение операции
-        console.log(`Результат: ( ${mathExp}) = ${firstNumber + secondNumber}`);
-        return firstNumber + secondNumber;
-      } else if (operationSymbol == '-'){
-        console.log(`Результат: ( ${mathExp}) = ${firstNumber - secondNumber}`);
-        return firstNumber - secondNumber;
-      } else if (operationSymbol == '*'){
-        console.log(`Результат: ( ${mathExp}) = ${firstNumber * secondNumber}`);
-        return firstNumber * secondNumber;
-      } else if (operationSymbol == '/' && secondNumber != '0') {
-        console.log(`Результат: ( ${mathExp}) = ${firstNumber / secondNumber}`);
-        return firstNumber / secondNumber;
-      } else if (operationSymbol == '/' && secondNumber == '0' && error == false)  {  // Делить на наоль нельзя
-        console.log(`ОШИБКА: Делить на ноль нельзя.`)
-        error = true;
+    return turn;
+  }
+
+  function checkStr(str) {
+    let pos = 0;
+    let validValues = '1234567890-+*/ ()';
+    while (pos < str.length - 1) {
+      if (validValues.indexOf(str[pos]) == -1) {
+        return false;
+      }
+      pos++;
+    }
+    return true;
+  };
+  
+  function turnCheck(turn) {
+    let operations = 0;
+    let numbers = 0;
+    for (let i = 0; i < turn.length; i++) {
+     if (isNumber(turn[i])) numbers += 1;
+     if (isOperation(turn[i])) operations += 1;
+    }
+    return (numbers == operations + 1);
+  }
+
+  function stringFormatting(str) {
+    str = str.replace(/['+']+/g, ' +')
+    str = str.replace(/['\-']+/g, ' -')
+    str = str.replace(/['*']+/g, ' *')
+    str = str.replace(/['/']+/g, ' /')
+    str = str.replace(/['(', ')']+/g, ' ').trim();
+    str += ' ';
+    return str;
+  }
+
+  function сalculation(turn) {
+    function performOperations() {
+      if (turn.length == 1 && isNumber(turn[0])) {
+        return turn.shift();
+      }
+      if (turn.length > 1 && isOperation(turn[0])) {
+        let operation = turn.shift();
+        let firstNum = null;
+        let secondNum = null;
+        (isNumber(turn[0])) ? firstNum = turn.shift() : firstNum = performOperations();
+        (isNumber(turn[0])) ? secondNum = turn.shift() : secondNum = performOperations();
+        if (firstNum != null && secondNum != null) {
+          if (operation == '+') return (firstNum + secondNum);
+          if (operation == '-') return (firstNum - secondNum);
+          if (operation == '*') return (firstNum * secondNum);
+          if (operation == '/') return (firstNum / secondNum);
+        } else {
+          return null
+        }
+      } else {
         return null;
       }
-    } else if (error == false) {
-    console.log(`ОШИБКА: Одна из переменных не была задана или не была вычислена.`); // Строка записана некорректно или присутствует деление на ноль.
-    error = true;
-    return null;
+    }
+    return performOperations();
+  }
+  if (typeof(str) == "string" && !str.trim() == '') {
+    if (checkStr(str))
+    {
+      str = stringFormatting(str);
+      let turn = [];
+      turn = fillTurn(str);
+      console.log(turn);
+      let result = null;
+      if (turnCheck(turn)) {
+        return (`Результат: ${result = сalculation(turn)}`)
+      } else {
+       console.log('ERROR: некорректная последовательность');
+       return null;
+      }
     } else {
-      return null;
+      return console.log('ERROR: Встречен не подходящий символ.');
     }
   } else {
-    return null;
+    return console.log('ERROR: В параметрах не была передана строка.');
   }
 }
