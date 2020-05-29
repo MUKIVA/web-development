@@ -15,7 +15,7 @@ function calc(str) {
         pos = str.indexOf(' ', pos);
       } else if (isOperation(str[pos]) && isDigit(str[pos + 1]) && (str[pos] == '*' || str[pos] == '/')) {
         turn.push(str[pos]);
-      } else if (isDigit(str[pos])) {
+      } else if (isDigit(str[pos]) || (str[pos] == '.' && isDigit(str[pos+1]))) {
         turn.push(parseFloat(str.substring(pos, str.indexOf(' ', pos))));
         pos = str.indexOf(' ', pos);
       }
@@ -26,7 +26,7 @@ function calc(str) {
 
   function checkStr(str) {
     let pos = 0;
-    let validValues = '1234567890-+*/ ()';
+    let validValues = '1234567890-+*/ ().';
     while (pos < str.length - 1) {
       if (validValues.indexOf(str[pos]) == -1) {
         return false;
@@ -47,40 +47,39 @@ function calc(str) {
   }
 
   function stringFormatting(str) {
-    str = str.replace(/['+']+/g, ' +')
-    str = str.replace(/['\-']+/g, ' -')
-    str = str.replace(/['*']+/g, ' *')
-    str = str.replace(/['/']+/g, ' /')
+    str = str.replace(/['+']+/g, ' +');
+    str = str.replace(/['\-']+/g, ' -');
+    str = str.replace(/['*']+/g, ' *');
+    str = str.replace(/['/']+/g, ' /');
     str = str.replace(/['(', ')']+/g, ' ').trim();
     str += ' ';
     return str;
   }
 
-  function сalculation(turn) {
-    function performOperations() {
-      if (turn.length == 1 && isNumber(turn[0])) {
-        return turn.shift();
-      }
-      if (turn.length > 1 && isOperation(turn[0])) {
-        let operation = turn.shift();
-        let firstNum = null;
-        let secondNum = null;
-        (isNumber(turn[0])) ? firstNum = turn.shift() : firstNum = performOperations();
-        (isNumber(turn[0])) ? secondNum = turn.shift() : secondNum = performOperations();
-        if (firstNum != null && secondNum != null) {
-          if (operation == '+') return (firstNum + secondNum);
-          if (operation == '-') return (firstNum - secondNum);
-          if (operation == '*') return (firstNum * secondNum);
-          if (operation == '/') return (firstNum / secondNum);
-        } else {
-          return null
-        }
-      } else {
-        return null;
-      }
+
+  function performOperations(turn) {
+    if (turn.length == 1 && isNumber(turn[0])) {
+      return turn.shift();
     }
-    return performOperations();
+    if (turn.length > 1 && isOperation(turn[0])) {
+      let operation = turn.shift();
+      let firstNum = null;
+      let secondNum = null;
+      (isNumber(turn[0])) ? firstNum = turn.shift() : firstNum = performOperations(turn);
+      (isNumber(turn[0])) ? secondNum = turn.shift() : secondNum = performOperations(turn);
+      if (firstNum != null && secondNum != null) {
+        if (operation == '+') return (firstNum + secondNum);
+        if (operation == '-') return (firstNum - secondNum);
+        if (operation == '*') return (firstNum * secondNum);
+        if (operation == '/') return (firstNum / secondNum);
+      } else {
+        return null
+      }
+    } else {
+      return null;
+    }
   }
+
   if (typeof(str) == "string" && !str.trim() == '') {
     if (checkStr(str))
     {
@@ -88,9 +87,13 @@ function calc(str) {
       let turn = [];
       turn = fillTurn(str);
       console.log(turn);
-      let result = null;
       if (turnCheck(turn)) {
-        return (`Результат: ${result = сalculation(turn)}`)
+        let result = performOperations(turn);
+        if (result == null) {
+          return ('ERROR: Произошла неведомая мне ошибка. Серьезно, как это можно было сломать?')
+        } else {
+          return (`Результат: ${result}`);
+        }
       } else {
        console.log('ERROR: некорректная последовательность');
        return null;
