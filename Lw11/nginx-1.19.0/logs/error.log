@@ -1,0 +1,23 @@
+2020/05/30 18:49:27 [error] 10652#10708: *5 CreateFile() "C:\GitHub\web-development\Lw11\nginx-1.19.0/html/web/favicon.ico" failed (2: The system cannot find the file specified), client: 127.0.0.1, server: mysait.my, request: "GET /favicon.ico HTTP/1.1", host: "mysite.my", referrer: "http://mysite.my/"
+2020/05/30 20:29:46 [error] 10652#10708: *27 FastCGI sent in stderr: "PHP Fatal error:  Uncaught PDOException: SQLSTATE[HY000] [1049] Unknown database 'lw11' in C:\GitHub\web-development\Lw11\nginx-1.19.0\html\src\utils\database.php:8
+Stack trace:
+#0 C:\GitHub\web-development\Lw11\nginx-1.19.0\html\src\utils\database.php(8): PDO->__construct()
+#1 C:\GitHub\web-development\Lw11\nginx-1.19.0\html\src\utils\database.php(15): database()
+#2 C:\GitHub\web-development\Lw11\nginx-1.19.0\html\src\pages\save_feedback_page.php(26): saveFeedback()
+#3 C:\GitHub\web-development\Lw11\nginx-1.19.0\html\web\index.php(5): validFormParam()
+#4 {main}
+  thrown in C:\GitHub\web-development\Lw11\nginx-1.19.0\html\src\utils\database.php on line 8" while reading response header from upstream, client: 127.0.0.1, server: mysait.my, request: "POST /index.php HTTP/1.1", upstream: "fastcgi://127.0.0.1:9000", host: "mysite.my", referrer: "http://mysite.my/"
+2020/05/30 21:12:28 [error] 10652#10708: *53 FastCGI sent in stderr: "PHP Fatal error:  Uncaught Error: Call to undefined function mysql_set_charset() in C:\GitHub\web-development\Lw11\nginx-1.19.0\html\src\utils\database.php:10
+Stack trace:
+#0 C:\GitHub\web-development\Lw11\nginx-1.19.0\html\src\utils\database.php(16): database()
+#1 C:\GitHub\web-development\Lw11\nginx-1.19.0\html\src\pages\save_feedback_page.php(26): saveFeedback()
+#2 C:\GitHub\web-development\Lw11\nginx-1.19.0\html\web\index.php(5): validFormParam()
+#3 {main}
+  thrown in C:\GitHub\web-development\Lw11\nginx-1.19.0\html\src\utils\database.php on line 10" while reading response header from upstream, client: 127.0.0.1, server: mysait.my, request: "POST /index.php HTTP/1.1", upstream: "fastcgi://127.0.0.1:9000", host: "mysite.my", referrer: "http://mysite.my/index.php"
+2020/05/30 21:13:14 [error] 10652#10708: *53 FastCGI sent in stderr: "PHP Fatal error:  Uncaught Error: Call to undefined function mysql_set_charset() in C:\GitHub\web-development\Lw11\nginx-1.19.0\html\src\utils\database.php:10
+Stack trace:
+#0 C:\GitHub\web-development\Lw11\nginx-1.19.0\html\src\utils\database.php(16): database()
+#1 C:\GitHub\web-development\Lw11\nginx-1.19.0\html\src\pages\save_feedback_page.php(26): saveFeedback()
+#2 C:\GitHub\web-development\Lw11\nginx-1.19.0\html\web\index.php(5): validFormParam()
+#3 {main}
+  thrown in C:\GitHub\web-development\Lw11\nginx-1.19.0\html\src\utils\database.php on line 10" while reading response header from upstream, client: 127.0.0.1, server: mysait.my, request: "POST /index.php HTTP/1.1", upstream: "fastcgi://127.0.0.1:9000", host: "mysite.my", referrer: "http://mysite.my/index.php"

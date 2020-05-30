@@ -86,7 +86,6 @@ function calc(str) {
       str = stringFormatting(str);
       let turn = [];
       turn = fillTurn(str);
-      console.log(turn);
       if (turnCheck(turn)) {
         let result = performOperations(turn);
         if (result == null) {
@@ -95,13 +94,12 @@ function calc(str) {
           return (`Результат: ${result}`);
         }
       } else {
-       console.log('ERROR: некорректная последовательность');
-       return null;
+        return ('ERROR: некорректная последовательность');
       }
     } else {
-      return console.log('ERROR: Встречен не подходящий символ.');
+      return ('ERROR: Встречен не подходящий символ.');
     }
   } else {
-    return console.log('ERROR: В параметрах не была передана строка.');
+    return ('ERROR: В параметрах не была передана строка.');
   }
 }

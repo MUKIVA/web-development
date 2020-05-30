@@ -1,0 +1,6 @@
+
+    name: Иван,
+    email: mukiva2261@gmail.com,
+    country: Россия,
+    gender: мужской,
+    message: 123
