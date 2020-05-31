@@ -21,3 +21,4 @@ Stack trace:
 #2 C:\GitHub\web-development\Lw11\nginx-1.19.0\html\web\index.php(5): validFormParam()
 #3 {main}
   thrown in C:\GitHub\web-development\Lw11\nginx-1.19.0\html\src\utils\database.php on line 10" while reading response header from upstream, client: 127.0.0.1, server: mysait.my, request: "POST /index.php HTTP/1.1", upstream: "fastcgi://127.0.0.1:9000", host: "mysite.my", referrer: "http://mysite.my/index.php"
+2020/05/31 00:42:34 [error] 7840#4480: *2 CreateFile() "C:\GitHub\web-development\Lw11\nginx-1.19.0/html/web/favicon.ico" failed (2: The system cannot find the file specified), client: 127.0.0.1, server: mysait.my, request: "GET /favicon.ico HTTP/1.1", host: "mysite.my", referrer: "http://mysite.my/index.php"
