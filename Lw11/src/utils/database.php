@@ -19,7 +19,7 @@
         $gender = $feedback['gender'];
         $message = $feedback['message'];
 
-        $formDB->query("INSERT INTO `messages`(`user_name`, `email`, `country`, `gender`, `message` ) VALUES('$name', '$email', '$country', '$gender', '$message')");
+        $formDB->query("INSERT INTO `request`(`user_name`, `email`, `country`, `gender`, `message` ) VALUES('$name', '$email', '$country', '$gender', '$message')");
     }
 
     function getFeedback(string $email): array
@@ -34,11 +34,11 @@
             `gender` AS `Пол`,
             `message` AS `Сообщение`
         FROM
-            `messages`
+            `request`
         WHERE
             email = ?;
         ");
         $request->execute([$email]);
         $data = $request->fetchAll(PDO::FETCH_ASSOC|PDO::FETCH_GROUP);
-        return $data == [] ? [] : $data;
+        return $data;
     }
