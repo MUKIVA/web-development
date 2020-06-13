@@ -1,7 +1,7 @@
 <?php
 function validFormParam(): void
 {
-    $name = preg_match("/^[а-я А-Я A-Z a-z]+$/", getPostParameter('name')) ? getPostParameter('name') : '';
+    $name = preg_match("/^[а-я А-Я A-Z a-z]+$/u", getPostParameter('name')) ? getPostParameter('name') : '';
     $email = filter_var(strtolower(getPostParameter('email')), FILTER_VALIDATE_EMAIL) ? strtolower(getPostParameter('email')) : '';
     $country = getPostParameter('country') === '-' ? '' : getPostParameter('country');
     $gender = getPostParameter('gender') === 'male' ? 'женский' : getPostParameter('gender') === 'female' ? 'мужской' : '';

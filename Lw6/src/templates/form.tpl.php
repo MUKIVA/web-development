@@ -27,9 +27,9 @@
     <input class="input_string" type="email" name="email" value="<?php echo $args['email'] ?? ''; ?>">
     <p>Откуда вы?</p>
     <select class="input_space" name="country">
-      <option <?php if ($args['country'] == '-'): echo 'selected'; endif?>>-</option>
-      <option <?php if ($args['country'] == 'Россия'): echo 'selected'; endif?>>Россия</option>
-      <option <?php if ($args['country'] == 'Другое'): echo 'selected'; endif?>>Другое</option> 
+      <option value="-" <?php if (isset($args['country'])): if ($args['country'] == '-'): echo 'selected'; endif; endif?>>-</option>
+      <option value="Russia"<?php if (isset($args['country'])): if ($args['country'] == 'Russia'): echo 'selected'; endif; endif?>>Россия</option>
+      <option value="other" <?php if (isset($args['country'])): if ($args['country'] == 'Other'): echo 'selected'; endif; endif?>>Другое</option> 
     </select>
     <p>Ваш пол</p>
     <input class="radio_male" type="radio" name="gender" value="male" id="gender_male" <?php if ($args['gender'] == 'мужской'): echo 'Checked'; endif ?>><label for="gender_male">Мужской</label>
