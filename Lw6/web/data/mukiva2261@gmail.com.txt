@@ -1,6 +1,6 @@
 
-    name: Иван,
+    name: Иванус,
     email: mukiva2261@gmail.com,
-    country: Россия,
+    country: Russia,
     gender: мужской,
-    message: 212
+    message: 123

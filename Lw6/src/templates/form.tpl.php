@@ -32,8 +32,8 @@
       <option value="other" <?php if (isset($args['country'])): if ($args['country'] == 'Other'): echo 'selected'; endif; endif?>>Другое</option> 
     </select>
     <p>Ваш пол</p>
-    <input class="radio_male" type="radio" name="gender" value="male" id="gender_male" <?php if ($args['gender'] == 'мужской'): echo 'Checked'; endif ?>><label for="gender_male">Мужской</label>
-    <input class="radio_female" type="radio" name="gender" value="female" id="gender_female" <?php if ($args['gender'] == 'женский'): echo 'checked'; endif ?>><label for="gender_female">Женский</label>
+    <input class="radio_male" type="radio" name="gender" value="male" id="gender_male" <?php if (isset($args['gender'])): if ($args['gender'] == 'мужской'): echo 'Checked'; endif; endif ?>><label for="gender_male">Мужской</label>
+    <input class="radio_female" type="radio" name="gender" value="female" id="gender_female" <?php if (isset($args['gender'])): if ($args['gender'] == 'женский'): echo 'checked'; endif; endif ?>><label for="gender_female">Женский</label>
     <p>
       Ваше сообщение <span>*</span>
       <span>
