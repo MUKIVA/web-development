@@ -3,6 +3,7 @@ function calc(str) {
   let isNumber = (n) => (typeof (n) == "number");
   let isOperation = (char) => (char == '+' || char == '-' || char == '*' || char == '/'); 
   let checkStr = (str) => (str.search(/[^\d\+\-\*\/\s()\.]/g) != -1);
+  let turnCheck = (turn) => (turn.filter(operation => isOperation(operation)).length + 1 != turn.filter( number => isNumber(number)).length);
 
   function fillTurn(str) {
     let turn = str.split(' ')
@@ -10,16 +11,6 @@ function calc(str) {
       if (!isOperation(turn[i])) turn[i] = parseFloat(turn[i]);
     }
     return turn;
-  }
-
-  function turnCheck(turn) {
-    let operations = 0;
-    let numbers = 0;
-    for (let i = 0; i < turn.length; i++) {
-      if (isNumber(turn[i])) numbers += 1;
-      if (isOperation(turn[i])) operations += 1;
-    }
-    return !(numbers == operations + 1);
   }
 
   function stringFormatting(str) {
