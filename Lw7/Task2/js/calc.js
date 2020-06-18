@@ -2,60 +2,34 @@ function calc(str) {
 
   let isNumber = (n) => (typeof (n) == "number");
   let isOperation = (char) => (char == '+' || char == '-' || char == '*' || char == '/'); 
-  let isDigit = (char) => (char >= '0' && char <= '9');
+  let checkStr = (str) => (str.search(/[^\d\+\-\*\/\s()\.]/g) != -1);
 
   function fillTurn(str) {
-    let pos = 0;
-    let turn = [];
-    while (pos < str.length - 1) {
-      if (isOperation(str[pos]) && !isDigit(str[pos + 1])) {
-        turn.push(str[pos])
-      } else if (isOperation(str[pos]) && isDigit(str[pos + 1]) && (str[pos] == '+' || str[pos] == '-')) {
-        turn.push(parseFloat(str.substring(pos, str.indexOf(' ', pos))));
-        pos = str.indexOf(' ', pos);
-      } else if (isOperation(str[pos]) && isDigit(str[pos + 1]) && (str[pos] == '*' || str[pos] == '/')) {
-        turn.push(str[pos]);
-      } else if (isDigit(str[pos]) || (str[pos] == '.' && isDigit(str[pos+1]))) {
-        turn.push(parseFloat(str.substring(pos, str.indexOf(' ', pos))));
-        pos = str.indexOf(' ', pos);
-      }
-      pos++;
+    let turn = str.split(' ')
+    for (let i = 0; i < turn.length; i++) {
+      if (!isOperation(turn[i])) turn[i] = parseFloat(turn[i]);
     }
     return turn;
   }
 
-  function checkStr(str) {
-    let pos = 0;
-    let validValues = '1234567890-+*/ ().';
-    while (pos < str.length - 1) {
-      if (validValues.indexOf(str[pos]) == -1) {
-        return false;
-      }
-      pos++;
-    }
-    return true;
-  };
-  
   function turnCheck(turn) {
     let operations = 0;
     let numbers = 0;
     for (let i = 0; i < turn.length; i++) {
-     if (isNumber(turn[i])) numbers += 1;
-     if (isOperation(turn[i])) operations += 1;
+      if (isNumber(turn[i])) numbers += 1;
+      if (isOperation(turn[i])) operations += 1;
     }
-    return (numbers == operations + 1);
+    return !(numbers == operations + 1);
   }
 
   function stringFormatting(str) {
-    str = str.replace(/['+']+/g, ' +');
-    str = str.replace(/['\-']+/g, ' -');
-    str = str.replace(/['*']+/g, ' *');
-    str = str.replace(/['/']+/g, ' /');
-    str = str.replace(/['(', ')']+/g, ' ').trim();
-    str += ' ';
+    str = str.replace(/\+/g, ' +');
+    str = str.replace(/\-/g, ' -');
+    str = str.replace(/\*/g, ' * ');
+    str = str.replace(/\//g, ' / ');
+    str = str.replace(/[()\s]+/g, ' ').trim();
     return str;
   }
-
 
   function performOperations(turn) {
     if (turn.length == 1 && isNumber(turn[0])) {
@@ -80,26 +54,15 @@ function calc(str) {
     }
   }
 
-  if (typeof(str) == "string" && !str.trim() == '') {
-    if (checkStr(str))
-    {
-      str = stringFormatting(str);
-      let turn = [];
-      turn = fillTurn(str);
-      if (turnCheck(turn)) {
-        let result = performOperations(turn);
-        if (result == null) {
-          return ('ERROR: Произошла неведомая мне ошибка. Серьезно, как это можно было сломать?')
-        } else {
-          return (`Результат: ${result}`);
-        }
-      } else {
-        return ('ERROR: некорректная последовательность');
-      }
-    } else {
-      return ('ERROR: Встречен не подходящий символ.');
-    }
+  if (typeof(str) != "string" || str.trim() == '') return ('ERROR: В параметрах не была передана строка.');
+  if (checkStr(str)) return ('ERROR: Встречен не подходящий символ.');
+  str = stringFormatting(str);
+  let turn = fillTurn(str);
+  if (turnCheck(turn)) return ('ERROR: некорректная последовательность');
+  let result = performOperations(turn);
+  if (result == null) {
+    return ('ERROR: Произошла неведомая мне ошибка. Серьезно, как это можно было сломать?')
   } else {
-    return ('ERROR: В параметрах не была передана строка.');
+    return (`Результат: ${result}`);
   }
 }
