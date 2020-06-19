@@ -3,8 +3,8 @@ function validFormParam(): void
 {
     $name = preg_match("/^[а-я А-Я A-Z a-z]+$/u", getPostParameter('name')) ? getPostParameter('name') : '';
     $email = filter_var(strtolower(getPostParameter('email')), FILTER_VALIDATE_EMAIL) ? strtolower(getPostParameter('email')) : '';
-    $country = getPostParameter('country') === '-' ? '' : getPostParameter('country');
-    $gender = getPostParameter('gender') === 'male' ? 'женский' : getPostParameter('gender') === 'female' ? 'мужской' : '';
+    $country = getPostParameter('country') === '-' ? '' : (getPostParameter('country') === 'Russia' ? 'Россия' : 'Другое');
+    $gender = getPostParameter('gender') === 'female' ? 'женский' : (getPostParameter('gender') === 'male' ? 'мужской' : '');
     $message = getPostParameter('message');
     $dataForm = [
         'name' => $name,

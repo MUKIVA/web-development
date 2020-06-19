@@ -27,13 +27,13 @@
     <input class="input_string" type="email" name="email" value="<?php echo $args['email'] ?? ''; ?>">
     <p>Откуда вы?</p>
     <select class="input_space" name="country">
-      <option value="-" <?php if (isset($args['country'])): if ($args['country'] == '-'): echo 'selected'; endif; endif?>>-</option>
-      <option value="Russia"<?php if (isset($args['country'])): if ($args['country'] == 'Russia'): echo 'selected'; endif; endif?>>Россия</option>
-      <option value="other" <?php if (isset($args['country'])): if ($args['country'] == 'Other'): echo 'selected'; endif; endif?>>Другое</option> 
+      <option value="-" <?php if ((isset($args['country'])) && ($args['country'] == '-')): echo 'selected'; endif ?>>-</option>
+      <option value="Russia"<?php if ((isset($args['country'])) && ($args['country'] == 'Россия')): echo 'selected'; endif ?>>Россия</option>
+      <option value="other" <?php if ((isset($args['country'])) && ($args['country'] == 'Другое')): echo 'selected'; endif ?>>Другое</option> 
     </select>
     <p>Ваш пол</p>
-    <input class="radio_male" type="radio" name="gender" value="male" id="gender_male" <?php if (isset($args['gender'])): if ($args['gender'] == 'мужской'): echo 'Checked'; endif; endif ?>><label for="gender_male">Мужской</label>
-    <input class="radio_female" type="radio" name="gender" value="female" id="gender_female" <?php if (isset($args['gender'])): if ($args['gender'] == 'женский'): echo 'checked'; endif; endif ?>><label for="gender_female">Женский</label>
+    <input class="radio_male" type="radio" name="gender" value="male" id="gender_male" <?php if ((isset($args['gender'])) && ($args['gender'] == 'мужской')): echo 'Checked'; endif ?>><label for="gender_male">Мужской</label>
+    <input class="radio_female" type="radio" name="gender" value="female" id="gender_female" <?php if ((isset($args['gender'])) && ($args['gender'] == 'женский')): echo 'checked'; endif ?>><label for="gender_female">Женский</label>
     <p>
       Ваше сообщение <span>*</span>
       <span>
@@ -46,13 +46,14 @@
     </p>
     <textarea class="input_message" name="message" ><?php echo $args['message'] ?? ''; ?></textarea>
     <input class="send_button" type="submit" value="Отправить">
-    <?php if (isset($args['сompleted'])):
+    <?php
+    if (isset($args['сompleted'])):
       if ($args['сompleted']):
-         echo "<span class=\"completed_msg\">Успех</span>";
-       endif;
-       if (!($args['сompleted'])):
-         echo "<span class=\"non_completed_msg\">Провал</span>";
-       endif;
-     endif; ?>
+        echo "<span class=\"completed_msg\">Успех</span>";
+      endif;
+      if (!($args['сompleted'])):
+        echo "<span class=\"non_completed_msg\">Провал</span>";
+      endif;
+    endif; ?>
   </form>
 </div>
