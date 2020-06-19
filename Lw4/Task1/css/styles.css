@@ -1,4 +1,5 @@
-.content {
+.content
+{
     background: #fff;
     color: #545454;
     font-family: "Open sans", sans-serif;
@@ -9,13 +10,15 @@
     padding: 20px 20px 0 20px;
 }
 
-.background_color {
+.background_color
+{
     background: #ddd;
     margin: 0;
     padding: 0;
 }
 
-.paper_end {
+.paper_end
+{
     color: black;
     margin: 0;
     text-align: center;
@@ -24,7 +27,8 @@
     max-width: 100%;
 }
 
-.rightpic {
+.rightpic
+{
     float: right;
     margin: 10px;
 }
