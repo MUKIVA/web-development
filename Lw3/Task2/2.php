@@ -8,48 +8,27 @@ function isNumber($ch)
 
 function isValidChar($ch)
 {
-    $validCharString = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
-    return ((strpos($validCharString, $ch) !== false) or (isNumber($ch)));
-}
-
-function isNotEmptyString($checkString)
-{
-    return ($checkString != null);
+    return preg_match("/[a-zA-Z0-9]/", $ch);
 }
 
 function checkIdentifier()
 {
+    if (empty($_GET["identifier"])) return nl2br("No \n ERROR: Пустой идентификатор!");
     $identifierString = $_GET["identifier"];
-    if (isNotEmptyString($identifierString))
+    $index = 1;
+    if (isNumber($identifierString[0]))
     {
-        $index = 1;
-        if (isNumber($identifierString[0]))
-        {
-            return "No \n<br> Error: В начале идентификатора не может быть цифры";
-        }
-        else
-        {
-            $noError = isValidChar($identifierString[0]);
-            while (($index < strlen($identifierString)) and ($noError === true))
-            {
-                $noError = isValidChar($identifierString[$index]);
-                $index++;
-            }
-            if ($noError)
-            {
-                return 'Yes';
-            }
-            else 
-            {
-                return "No \n<br> Error: Встречен недопустимый символ";
-            }
-        }
-
-    } 
+        return nl2br("No \n ERROR: В начале идентификатора не может быть цифры!");
+    }
     else
     {
-        return "No \n<br> Error: Пустой идентификатор";
-    }
-
+        $noError = isValidChar($identifierString[0]);
+        while (($index < strlen($identifierString)) and ($noError == true))
+        {
+            $noError = isValidChar($identifierString[$index]);
+            $index++;
+        }
+        return ($noError) ? 'Yes' : nl2br("No \n ERROR: Встречен недопустимый символ!");
+    } 
 }
 ?>
