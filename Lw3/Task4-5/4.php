@@ -1,7 +1,7 @@
 <?php
 function dirCheck()
 {
-    return (file_exists("./Data/")) ? null : mkdir("./Data/");
+    if (!file_exists("./Data/")) mkdir("./Data/");
 }
 
 function unsetVoid($data)
@@ -13,7 +13,7 @@ function unsetVoid($data)
     return $data;
 }
 
-function getParamValue(string $paramName)
+function getParamValue($paramName)
 {
     return (isset($_GET[$paramName])) ? $_GET[$paramName] : '';
 }
@@ -41,7 +41,6 @@ function surveySaver()
     ];
     if (!filter_var($data['email'], FILTER_VALIDATE_EMAIL)) return "ERROR: Некорректный email";
     $data = unsetVoid($data);
-    $fInfo = "";
     $fInfo = setInfo($data);
     file_put_contents('./Data/' . $data['email'] . '.txt', $fInfo);
     return "Успех!";
