@@ -1,9 +1,0 @@
-Error: Некорректный email 
-Error: Некорректный email 
-Error: Некорректный email 
-Warning: Отстутствует параметр age 
-Error: Параметр email обязателен 
-Error: Некорректный email 
-Warning: Отстутствует параметр first_name 
-Warning: Отстутствует параметр last_name 
-Warning: Отстутствует параметр age 

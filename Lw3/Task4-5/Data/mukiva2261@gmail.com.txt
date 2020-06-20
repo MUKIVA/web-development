@@ -1,3 +1,2 @@
 email: mukiva2261@gmail.com
-first_name: Ivan
-last_name: Mu
+first_name: ivan

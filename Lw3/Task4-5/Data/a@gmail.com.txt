@@ -1,2 +1,0 @@
-email: a@gmail.com
-age: 18

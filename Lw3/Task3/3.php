@@ -105,13 +105,13 @@ function passwordStrength()
     }
     else
     {
-         $safety = $safety + allCharSafety($parametrString);
-         $safety = $safety + allDigitSafety($parametrString);
-         $safety = $safety + allUpperCaseLetterSafety($parametrString);
-         $safety = $safety + allLowerCaseLetterSafety($parametrString);
-         $safety = $safety - onliLetterFine($parametrString);
-         $safety = $safety - onliDigitFine($parametrString);
-         $safety = $safety - repeatCharactersFine($parametrString);
+        $safety = $safety + allCharSafety($parametrString);
+        $safety = $safety + allDigitSafety($parametrString);
+        $safety = $safety + allUpperCaseLetterSafety($parametrString);
+        $safety = $safety + allLowerCaseLetterSafety($parametrString);
+        $safety = $safety - onliLetterFine($parametrString);
+        $safety = $safety - onliDigitFine($parametrString);
+        $safety = $safety - repeatCharactersFine($parametrString);
     }
     return $safety;
 }

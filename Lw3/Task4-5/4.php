@@ -1,75 +1,49 @@
 <?php
 function dirCheck()
 {
-    if (file_exists("./Data/"))
-    {
-        return null;
-    }
-    else
-    {
-      return mkdir("./Data/");
-    }
+    return (file_exists("./Data/")) ? null : mkdir("./Data/");
 }
 
-function writeErrorLog($errorString)
+function unsetVoid($data)
 {
-    $f = fopen("Data/errorlog.txt", "a");
-    fwrite($f, "$errorString \n");
-    fclose($f);
+    while (array_search('', $data) != false)
+    {
+        unset ($data[array_search('', $data)]);
+    }
+    return $data;
 }
 
-function writeParametr($parString, $email)
+function getParamValue(string $paramName)
 {
-    $parametr = $_GET["$parString"];
-    if (empty($parametr))
-    {
-        writeErrorLog("Warning: Отстутствует параметр $parString");
-    }
-    else
-    {
-        $f = fopen("Data/$email.txt", "a");
-        fwrite($f, "$parString: $parametr\n");
-        fclose($f);
-    }
+    return (isset($_GET[$paramName])) ? $_GET[$paramName] : '';
 }
 
-function emailCheck($email)
+function setInfo($data)
 {
-    if ((strpos($email, '@') > 0) and ((strpos($email, '@gmail.com') != false) or (strpos($email, '@mail.ru') != false) or (strpos($email, '@yandex.ru') != false) or (strpos($email, '@volgatech.net') != false)))
+    $info = "";
+    foreach ($data as $key => $value)
     {
-        $f = fopen("Data/$email.txt", "w");
-        fwrite($f, '');
-        fclose($f);
-        return true;
+        $info = $info . $key . ': ' . $value . "\n";
     }
-    else
-    {
-        return false;
-    }
+    return $info;
 }
+
 function surveySaver()
 {
     dirCheck();
-    $emailString = $_GET["email"];
-    if (empty($emailString))
-    {
-        writeErrorLog('Error: Параметр email обязателен');
-    }
-    else
-    {   
-        if (emailCheck($emailString))
-        {
-            writeParametr("email", $emailString);
-            writeParametr("first_name", $emailString);
-            writeParametr("last_name", $emailString);
-            writeParametr("age", $emailString);
-        }
-        else
-        {
-            writeErrorLog('Error: Некорректный email');
-        }
-
-    }
+    if (empty($_GET["email"])) return 'ERROR: Параметр email обязателен!';
+    
+    $data = [
+        'email' => getParamValue('email'),
+        'first_name' => getParamValue('first_name'),
+        'last_name' => getParamValue('last_name'),
+        'age' => getParamValue('age')
+    ];
+    if (!filter_var($data['email'], FILTER_VALIDATE_EMAIL)) return "ERROR: Некорректный email";
+    $data = unsetVoid($data);
+    $fInfo = "";
+    $fInfo = setInfo($data);
+    file_put_contents('./Data/' . $data['email'] . '.txt', $fInfo);
+    return "Успех!";
 }
 echo surveySaver();
-?>

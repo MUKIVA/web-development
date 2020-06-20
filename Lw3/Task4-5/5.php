@@ -1,63 +1,34 @@
 <?php
-
-function emailCheck($email)
-{   
-    if (file_exists("./data/$email.txt"))
-    {
-        return (strpos($email, '@') > 0);
-    }
-    else
-    {
-        return false;
-    }
-}
-
-function getParamString($email)
-{
-    $f = $f = fopen("./data/$email.txt", "r");
-    $parStr = fread($f, filesize("./data/$email.txt"));
-    fclose($f);
-    return $parStr;
-}
-
 function getParamValue($findPar, $parStr)
 {
     if (strripos($parStr, $findPar) === false)
     {
-        return " \n";
+        return nl2br("\r\n");
     }
     else
     {
         $value = substr($parStr,  strripos($parStr, $findPar));
         $value = substr($value, strpos($value, ':') + 1, strpos($value, "\n") - strpos($value, ':'));
-        return $value;
+        return nl2br($value);
     }
 }
 
-
 function surveyInfo()
 {
+    if (empty($_GET["email"])) return 'Error: Параметр email обязателен';
     $emailString = $_GET["email"];
-    if (empty($emailString))
-    {
-        return 'Error: Параметр email обязателен';
-    }
-    else
-    {
-        if (emailCheck($emailString))
-        {
-            $paramString = getParamString($emailString);
-            $resultString = $resultString.'Email:'.getParamValue("email", $paramString);
-            $resultString = $resultString.'First name:'.getParamValue("first_name", $paramString);
-            $resultString = $resultString.'Last name:'.getParamValue("last_name", $paramString);
-            $resultString = $resultString.'Age:'.getParamValue("age", $paramString);
-            return nl2br($resultString);
-        }
-        else
-        {
-            return 'Error: Некорректный email или фаил не найден';
-        }
-    }
+    if (!filter_var($emailString, FILTER_VALIDATE_EMAIL)) return 'Error: Некорректный email';
+    if (!file_exists("./data/$emailString.txt")) return 'Error: фаил не найден';
+    $paramString = file_get_contents("./data/$emailString.txt");
+    $array = [
+        'Email' =>  getParamValue("email", $paramString),
+        'First name' => getParamValue("first_name", $paramString),
+        'Last name' => getParamValue("last_name", $paramString),
+        'Age' => getParamValue("age", $paramString)
+    ];
+    $resultString = json_encode($array);
+    $resultString = str_replace(['{', '"', '}', '\r', '\n', ',' ], '', $resultString);
+    return $resultString;
 }
 echo surveyInfo();
 ?>
