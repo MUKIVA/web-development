@@ -13,6 +13,16 @@ function getParamValue($findPar, $parStr)
     }
 }
 
+function formatInfo($array)
+{
+    $infoString = "";
+    foreach ($array as $key => $value)
+    {
+        $infoString = $infoString . $key . ": " . $value;
+    }
+    return $infoString;
+}
+
 function surveyInfo()
 {
     if (empty($_GET["email"])) return 'Error: Параметр email обязателен';
@@ -26,8 +36,7 @@ function surveyInfo()
         'Last name' => getParamValue("last_name", $paramString),
         'Age' => getParamValue("age", $paramString)
     ];
-    $resultString = json_encode($array);
-    $resultString = str_replace(['{', '"', '}', '\r', '\n', ',' ], '', $resultString);
+    $resultString = formatInfo($array);
     return $resultString;
 }
 echo surveyInfo();
